@@ -185,7 +185,7 @@ function parseTSV(tsvData) {
 
     // Create Rank element and set its content
     const rankElement = document.createElement("span");
-    rankElement.textContent = "Rank: " + rank; // Update text content
+    rankElement.textContent = "" + rank; // Update text content
     rankElement.className = "rank"; // Add a class for styling
 
     // Append the Rank element to the card
