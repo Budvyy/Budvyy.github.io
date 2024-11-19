@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Power Cards</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=comic&sans&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        Header
+        <button class="dark-mode-toggle" id="dark-mode-toggle">🌙</button>
+    </header>
+    <header class="navigation">
+        <!-- Image as a link to the home page -->
+        <a href="index.html">
+            <img src="images/marvel-logo.png" alt="Marvel Logo" class="logo">
+        </a>
+        <div class="navigation">
+            <a href="index.html">Home</a>
+            <a href="list.html">My List</a>
+        </div>
+    </header>
+
+    <div class="filter-sort-container">
+        <div class="filter-container">
+            <label for="powerset-filter">Power Set: </label>
+            <select id="powerset-filter">
+                <option value="All">All</option>
+                <option value="Telepathy">Telepathy</option>
+                <option value="None">None</option>
+                <option value="Martial Arts">Martial Arts</option>
+                <option value="Teleportation">Teleportation</option>
+                <option value="Weather Control">Weather Control</option>
+                <option value="Power Control">Power Control</option>
+                <option value="Ranged weapons">Ranged weapons</option>
+                <option value="Elemental Control">Elemental Control</option>
+                <option value="Plasticity">Plasticity</option>
+                <option value="Super-Strength">Super-Strength</option>
+                <option value="Translation">Translation</option>
+                <option value="Melee Weapons">Melee Weapons</option>
+                <option value="Resize">Resize</option>
+                <option value="Illusion">Illusion</option>
+                <option value="Shield Bearer">Shield Bearer</option>
+                <option value="Tactics">Tactics</option>
+                <option value="Telekinesis">Telekinesis</option>
+                <option value="Magic">Magic</option>
+                <option value="Phasing">Phasing</option>
+                <option value="Healing">Healing</option>
+                <option value="Luck">Luck</option>
+                <option value="Super-Speed">Super-Speed</option>
+                <option value="Spider-Powers">Spider-Powers</option>
+                <option value="Omniversal Travel">Omniversal Travel</option>
+                <option value="Sixth Sense">Sixth Sense</option>
+            </select>
+        </div>
+        <div class="filter-container">
+            <label for="rank-filter">Rank: </label>
+            <select id="rank-filter">
+                <option value="0">All</option>
+                <option value="1">Rank 1</option>
+                <option value="2">Rank 2</option>
+                <option value="3">Rank 3</option>
+                <option value="4">Rank 4</option>
+                <option value="5">Rank 5</option>
+                <option value="6">Rank 6</option>
+            </select>
+        </div>
+        <label for="sort-by">Sort:</label>
+        <select class="sort-by" id="sort-by">
+            <option value="alphabetical">Alphabetical</option>
+            <option value="rank">Rank</option>
+        </select>
+    </div>
+
+    <!-- Cards container (4 columns layout) -->
+    <div id="cards-container" class="cards-container">
+        <!-- Cards will be appended here by JavaScript -->
+    </div>
+
+    <script src="marvel_tsv_parser.js"></script>
+</body>
+</html>

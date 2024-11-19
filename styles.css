@@ -1,0 +1,386 @@
+/* Fonts */
+@font-face {
+    font-family: "comic";
+    src: url('fonts/KOMIKAX_.ttf');
+  }
+
+  @font-face {
+    font-family: "comic-body";
+    src: url("fonts/KOMTXTK_.ttf");
+  }
+
+  @font-face {
+    font-family: "comic-ft";
+    src: url("fonts/KOMTXTI_.ttf");
+  }
+
+  /* General Page Styles */
+  body {
+    background: white;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  /* Header Styles (Thinner) */
+  header {
+    background: #303030;
+    padding: 10px 20px;
+    text-align: center;
+    position: relative;
+    margin: 0px 0px;
+    height: 60px;
+    /* Reduced header height */
+    display: flex;
+    align-items: center;
+  }
+
+  /* Navigation Styles */
+  .navigation {
+    background-color: black;
+    display: flex;
+    gap: 20px;
+    /* Space between navigation elements */
+    justify-content: space-between;
+    /* Distribute space evenly */
+    align-items: center;
+    /* Vertically align items */
+  }
+
+  /* Logo Styling */
+  .navigation .logo {
+    border-right: 1px solid #ccc;
+    /* Add border to the right */
+    padding-right: 10px;
+    /* Add some padding to the right of the logo */
+    height: 50px;
+    /* Adjust as needed */
+    width: 90px;
+    /* Adjust as needed */
+    /* Adjusted height and width to match button dimensions */
+  }
+
+  /* Navigation Links (Larger) */
+  .navigation a {
+    padding: 10px 15px;
+    /* Increased padding */
+    background-color: #000;
+    color: #fff;
+    display: inline-block;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 18px;
+    /* Increased font size */
+  }
+
+  /* Styling the dropdown filter */
+  label {
+    font-size: 16px;
+    font-weight: bold;
+    margin-right: 10px;
+    color: #333;
+  }
+
+  select {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-family: 'Oswald', sans-serif;
+    background-color: #fff;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  /* Styling for when the dropdown is focused */
+  select:focus {
+    border-color: #0288d1;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 120, 255, 0.5);
+  }
+
+  /* Styling for the options in the dropdown */
+  select option {
+    padding: 10px;
+    font-size: 16px;
+    background-color: #fff;
+    color: #333;
+  }
+
+  /* Hover effect for options */
+  select option:hover {
+    background-color: #0288d1;
+    color: white;
+  }
+
+  /* Card Container */
+  .cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(245px, 1fr)); /* Adjust 'minmax' values as needed */
+    gap: 20px;
+    padding: 20px;
+  }
+
+  /* Dark Mode Styles */
+  body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+  }
+
+  header.dark-mode {
+    background-color: #1e1e1e;
+  }
+
+  .dark-mode-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: transparent;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #fff;
+  }
+
+  /* Individual Card Styles */
+  .card {
+    border: 6px solid #000000;
+    border-radius: 10px;
+    padding: 15px;
+    background-color: #ffffff;
+    color: #333;
+    text-align: left;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s, border 0.3s ease;
+    position: relative;
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px black;
+    border: 6px dashed #fbc02d;
+  }
+
+  .card h3 {
+    font-family: 'comic', sans;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  .card .flavor-text {
+    font-family: "comic-ft";
+    font-size: 14px;
+    font-style: italic;
+    color: #ffffff;
+    margin-bottom: 15px;
+  }
+
+  .card .details {
+    font-family: "comic-body";
+    margin-top: 15px;
+    padding: 10px;
+    background-color: none;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    display: none;
+    font-size: 14px;
+    line-height: 1.5;
+    transition: max-height 0.3s ease-out;
+    overflow: hidden;
+  }
+
+  /* Power Set Color Coding */
+  .card[data-powerset="Telepathy"] {
+    background-color: #7b1fa2;
+    color: #ffffff;
+  }
+
+  .card[data-powerset="None"] {
+    background-color: #616161;
+    color: white;
+  }
+
+  .card[data-powerset="Martial Arts"] {
+    background-color: #d32f2f;
+    color: white;
+  }
+
+  .card[data-powerset="Teleportation"] {
+    background-color: #1976d2;
+    color: white;
+  }
+
+  .card[data-powerset="Weather Control"] {
+    background-color: #0288d1;
+    color: white;
+  }
+
+  .card[data-powerset="Power Control"] {
+    background-color: #8e24aa;
+    color: rgb(224, 120, 120);
+  }
+
+  .card[data-powerset="Ranged weapons"] {
+    background-color: #43a047;
+    color: white;
+  }
+
+  .card[data-powerset="Elemental Control"] {
+    background-color: #ffb300;
+    color: white;
+  }
+
+  .card[data-powerset="Plasticity"] {
+    background-color: #0288d1;
+    color: white;
+  }
+
+  .card[data-powerset="Super-Strength"] {
+    background-color: #455a64;
+    color: white;
+  }
+
+  .card[data-powerset="Translation"] {
+    background-color: #fbc02d;
+    color: white;
+  }
+
+  .card[data-powerset="Melee Weapons"] {
+    background-color: #c2185b;
+    color: white;
+  }
+
+  .card[data-powerset="Resize"] {
+    background-color: #1976d2;
+    color: white;
+  }
+
+  .card[data-powerset="Illusion"] {
+    background-color: #9c27b0;
+    color: white;
+  }
+
+  .card[data-powerset="Shield Bearer"] {
+    background-color: #2e7d32;
+    color: white;
+  }
+
+  .card[data-powerset="Tactics"] {
+    background-color: #f57c00;
+    color: white;
+  }
+
+  .card[data-powerset="Telekinesis"] {
+    background-color: #512da8;
+    color: white;
+  }
+
+  .card[data-powerset="Magic"] {
+    background-color: #d81b60;
+    color: white;
+  }
+
+  .card[data-powerset="Phasing"] {
+    background-color: #26a69a;
+    color: white;
+  }
+
+  .card[data-powerset="Healing"] {
+    background-color: #388e3c;
+    color: white;
+  }
+
+  .card[data-powerset="Luck"] {
+    background-color: #f57c00;
+    color: white;
+  }
+
+  .card[data-powerset="Super-Speed"] {
+    background-color: #1565c0;
+    color: white;
+  }
+
+  .card[data-powerset="Spider-Powers"] {
+    background-color: #d32f2f;
+    color: white;
+  }
+
+  .card[data-powerset="Omniversal Travel"] {
+    background-color: #8e24aa;
+    color: white;
+  }
+
+  .card[data-powerset="Sixth Sense"] {
+    background-color: #c2185b;
+    color: white;
+  }
+
+  /* Read More Button Styles */
+  .read-more-btn {
+    border: 2px solid black;
+    margin-top: 10px;
+    padding: 8px 12px;
+    background-color: #1976d2;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    text-transform: uppercase;
+  }
+
+  .read-more-btn:hover {
+    background-color: #1565c0;
+    transform: scale(1.05);
+  }
+
+  /* Style for the Rank element */
+  .card .rank {
+    position: absolute;
+    border: 2px solid black;
+    top: 10px;
+    right: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #3d0000;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+  }
+
+  /* Responsive Layout */
+  @media (max-width: 768px) { /* Adjust breakpoint as needed */
+    .cards-container {
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
+      /* Adjust 'minmax' values as needed */
+    }
+  }
+
+  @media (max-width: 480px) {
+    .cards-container {
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
+      /* Adjust 'minmax' values as needed */
+    }
+  }
+
+  /* Styling for the Filter and Sort Dropdowns */
+  .filter-sort-container {
+    display: flex;
+    /*flex-direction: column; */ /* Remove this line to arrange horizontally */
+    align-items: center; /* Center horizontally */
+    margin-bottom: 20px; /* Add some spacing below */
+  }
+
+  .filter-container {
+    display: flex; /* Arrange filter dropdowns side-by-side */
+    align-items: center; /* Align vertically */
+    margin-bottom: 10px; /* Space between filter rows */
+  }
+
+  .filter-container label {
+    margin-right: 10px; /* Space between label and select */
+  }
