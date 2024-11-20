@@ -781,6 +781,11 @@ body.list-page .cards-container .card {
 }
 
 @media (max-width: 480px) {
+  .cards-container {
+    grid-template-columns: repeat(2, 1fr); /* Display 2 cards in a row */
+    padding: 5px; /* Further reduce padding for very small screens */
+  }
+
   .filter-sort-container {
       flex-direction: column;
       align-items: flex-start;
