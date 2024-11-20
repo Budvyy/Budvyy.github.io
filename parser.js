@@ -74,11 +74,11 @@ export function parseTSV(tsvData) {
           break;
         case "Ranged weapons":
           backgroundColor = "#fbc02d"; // Yellow
-          textColor = "#000"; // Black text
+          textColor = "#fff"; // Black text
           break;
         case "Elemental Control":
           backgroundColor = "#ffcc00"; // Yellow
-          textColor = "#000"; // Black text
+          textColor = "#fff"; // Black text
           break;
         case "Plasticity":
           backgroundColor = "#f57c00"; // Orange
@@ -102,7 +102,7 @@ export function parseTSV(tsvData) {
           break;
         case "Resize":
           backgroundColor = "#9e9e9e"; // Light Grey
-          textColor = "#000"; // Black text
+          textColor = "#fff"; // Black text
           break;
         case "Illusion":
           backgroundColor = "#8e24aa"; // Magenta
@@ -141,7 +141,7 @@ export function parseTSV(tsvData) {
           break;
         case "Luck":
           backgroundColor = "#fbc02d"; // Yellow
-          textColor = "#000"; // Black text
+          textColor = "#fff"; // Black text
           break;
         case "Super-Speed":
           backgroundColor = "#ff5722"; // Deep Orange
@@ -165,7 +165,7 @@ export function parseTSV(tsvData) {
           break;
         default:
           backgroundColor = "#f5f5f5"; // Default Light Grey
-          textColor = "#000"; // Black text
+          textColor = "#fff"; // Black text
           break;
       }
   

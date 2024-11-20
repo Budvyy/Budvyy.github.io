@@ -9,21 +9,21 @@
 </head>
 
 <body>
-    <header>
-        <h1>My Power List</h1>
-        <button class="dark-mode-toggle" id="dark-mode-toggle">🌙</button>
-    </header>
     <header class="navigation">
         <a href="index.html">
             <img src="images/marvel-logo.png" alt="Marvel Logo" class="logo">
         </a>
+        <h1 class="page-title">My Power List</h1>
         <div class="navigation-links">
             <a href="index.html">Home</a>
             <a href="list.html">My List</a>
         </div>
     </header>
-
-    <button id="printList" class="print-btn">Print List</button>
+    
+    <div class="button-container">
+        <button id="printList" class="print-btn">Print List</button>
+        <button class="remove-all-btn">Remove All</button>
+    </div>
     <div id="myList-container" class="cards-container">
         <!-- List items will be appended here by JavaScript -->
     </div>

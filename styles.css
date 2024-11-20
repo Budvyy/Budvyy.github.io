@@ -59,6 +59,24 @@ header {
   align-items: center;
 }
 
+.navigation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navigation .logo {
+    margin-right: 0; /* Remove margin to ensure the title is touching the logo */
+}
+
+.navigation h1 {
+    flex-grow: 1;
+    margin: 0;
+    padding-left: 10px; /* Add padding to create a small space between the logo and title */
+    font-size: 1.5em;
+    color: white; /* Ensure the title is always white */
+}
+
 .navigation .logo {
   border-right: 1px solid #ccc;
   padding-right: 10px;
@@ -86,6 +104,11 @@ header {
   border-bottom: 1px solid #ddd;
   gap: 20px;
   flex-wrap: wrap;
+}
+
+body.dark-mode .filter-sort-container {
+  background-color: #333; /* Dark grey background for dark mode */
+  color: #e0e0e0; /* Light text color for dark mode */
 }
 
 .filter-container {
@@ -274,6 +297,26 @@ header.dark-mode {
   background-color: #1e1e1e;
 }
 
+body.dark-mode .filter-sort-container {
+  background-color: #333; /* Dark grey background for dark mode */
+  color: #e0e0e0; /* Light text color for dark mode */
+}
+
+body.dark-mode select {
+  background-color: #444; /* Darker background for select elements in dark mode */
+  color: #e0e0e0; /* Light text color for select elements in dark mode */
+  border-color: #555; /* Darker border color for select elements in dark mode */
+}
+
+body.dark-mode select option {
+  background-color: #444; /* Darker background for options in dark mode */
+  color: #e0e0e0; /* Light text color for options in dark mode */
+}
+
+body.dark-mode label {
+  color: #e0e0e0; /* Light text color for labels in dark mode */
+}
+
 .dark-mode-toggle {
   position: absolute;
   top: 20px;
@@ -283,6 +326,29 @@ header.dark-mode {
   font-size: 24px;
   cursor: pointer;
   color: #fff;
+  z-index: 10; /* Ensure it stays on top */
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between; /* Ensure space between buttons */
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0;
+  flex-wrap: wrap; /* Ensure buttons wrap if container is too narrow */
+}
+
+body.dark-mode .button-container {
+  background-color: #333; /* Dark grey background for dark mode */
+  color: #e0e0e0; /* Light text color for dark mode */
+}
+
+.print-btn, .remove-all-btn {
+  display: inline-block; /* Ensure the buttons are displayed side by side */
+  margin: 0; /* Remove any margin that might cause misalignment */
+  padding: 10px 20px; /* Ensure consistent padding */
+  border-radius: 5px; /* Ensure consistent border radius */
+  vertical-align: middle; /* Align buttons vertically in the middle */
 }
 
 /* 9. Power Set Color Coding */
@@ -467,4 +533,50 @@ header.dark-mode {
   .cards-container .card:nth-child(9n) {
     page-break-after: always;
   }
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between; /* Ensure space between buttons */
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0;
+  flex-wrap: wrap; /* Ensure buttons wrap if container is too narrow */
+}
+
+.remove-all-btn {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin: 10px auto; /* Center the button */
+}
+
+.remove-all-btn:hover {
+  background-color: #ff1a1a;
+}
+
+.print-btn {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin: 10px auto; /* Center the button */
+}
+
+.print-btn:hover {
+  background-color: #45a049;
+}
+
+.page-title {
+  font-family: 'comic';
+  font-size: 2em;
+  text-align: center;
+  margin: 0;
+  padding: 20px 0;
+  color: #333;
 }

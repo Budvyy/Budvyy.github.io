@@ -70,6 +70,7 @@ function sortCards(sortBy) {
 
 // Load TSV file on DOM content loaded
 document.addEventListener("DOMContentLoaded", () => {
+  document.body.classList.add("dark-mode"); // Enable dark mode by default
   fetch("data.tsv")
     .then(response => {
       if (!response.ok) {
@@ -98,6 +99,7 @@ document.getElementById("sort-by").addEventListener("change", () => {
 const darkModeToggle = document.getElementById("dark-mode-toggle");
 
 if (darkModeToggle) {
+  darkModeToggle.textContent = "🌞"; // Set the initial icon for dark mode
   darkModeToggle.addEventListener("click", () => {
     document.body.classList.toggle("dark-mode");
     darkModeToggle.textContent = document.body.classList.contains("dark-mode") ? "🌞" : "🌙";

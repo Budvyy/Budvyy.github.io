@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+  document.body.classList.add("dark-mode"); // Enable dark mode by default
   displayMyList();
 
   document.getElementById("printList").addEventListener("click", () => {
@@ -8,9 +9,19 @@ document.addEventListener("DOMContentLoaded", () => {
   // Dark Mode Toggle
   const darkModeToggle = document.getElementById("dark-mode-toggle");
   if (darkModeToggle) {
+    darkModeToggle.textContent = "🌞"; // Set the initial icon for dark mode
     darkModeToggle.addEventListener("click", () => {
       document.body.classList.toggle("dark-mode");
       darkModeToggle.textContent = document.body.classList.contains("dark-mode") ? "🌞" : "🌙";
+    });
+  }
+
+  // Add event listener for Remove All button
+  const removeAllBtn = document.querySelector(".remove-all-btn");
+  if (removeAllBtn) {
+    removeAllBtn.addEventListener("click", () => {
+      localStorage.removeItem("myList");
+      displayMyList();
     });
   }
 });
@@ -40,9 +51,14 @@ function displayMyList() {
   const container = document.getElementById("myList-container");
   container.innerHTML = '';
 
+  // Add Remove All Button
+  const removeAllBtn = document.querySelector(".remove-all-btn");
   if (myList.length === 0) {
     container.innerHTML = "<p>Your list is empty.</p>";
+    if (removeAllBtn) removeAllBtn.style.display = "none";
     return;
+  } else {
+    if (removeAllBtn) removeAllBtn.style.display = "block";
   }
 
   fetchPowersData().then(powersData => {
@@ -103,7 +119,7 @@ function removeFromList(index) {
   displayMyList();
 }
 
-// Add CSS for printer-friendly format
+// Add CSS for printer-friendly format and buttons
 const style = document.createElement('style');
 style.textContent = `
   @media print {
@@ -160,6 +176,41 @@ style.textContent = `
 
   .card .remove-btn:hover {
     background-color: #ff1a1a;
+  }
+
+  .remove-all-btn {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin: 10px 0;
+  }
+
+  .remove-all-btn:hover {
+    background-color: #ff1a1a;
+  }
+
+  .print-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin: 10px 0;
+  }
+
+  .print-btn:hover {
+    background-color: #45a049;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 10px 0;
   }
 `;
 document.head.appendChild(style);
