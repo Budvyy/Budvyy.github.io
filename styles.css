@@ -398,13 +398,15 @@ body.dark-mode .button-container {
 /* 10. Responsive Layout */
 @media (max-width: 768px) {
   .cards-container {
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    padding: 10px; /* Reduce padding for smaller screens */
   }
 
   .filter-sort-container {
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
+    padding: 10px; /* Reduce padding for smaller screens */
   }
 
   .filter-container, .sort-container {
@@ -413,34 +415,43 @@ body.dark-mode .button-container {
   }
 
   .sidebar {
-    width: 100%;
-    height: auto;
-    position: static;
-    display: none;
-  }
-
-  .sidebar.open {
-    display: block;
+    display: none; /* Hide the sidebar for mobile devices */
   }
 
   .toggle-sidebar-btn {
-    display: none;
+    display: none; /* Hide the toggle button for mobile devices */
   }
 
   .main-content.sidebar-open {
     margin-right: 0;
+  }
+
+  .navigation h1 {
+    font-size: 1.2em; /* Smaller font size for mobile */
+  }
+
+  .navigation a {
+    font-size: 14px; /* Smaller font size for mobile */
+  }
+
+  .button-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
   }
 }
 
 @media (max-width: 480px) {
   .cards-container {
-      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    padding: 5px; /* Further reduce padding for very small screens */
   }
 
   .filter-sort-container {
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
+    padding: 5px; /* Further reduce padding for very small screens */
   }
 
   .filter-container, .sort-container {
@@ -449,22 +460,29 @@ body.dark-mode .button-container {
   }
 
   .sidebar {
-    width: 100%;
-    height: auto;
-    position: static;
-    display: none;
-  }
-
-  .sidebar.open {
-    display: block;
+    display: none; /* Hide the sidebar for very small screens */
   }
 
   .toggle-sidebar-btn {
-    display: none;
+    display: none; /* Hide the toggle button for very small screens */
   }
 
   .main-content.sidebar-open {
     margin-right: 0;
+  }
+
+  .navigation h1 {
+    font-size: 1em; /* Even smaller font size for very small screens */
+  }
+
+  .navigation a {
+    font-size: 12px; /* Even smaller font size for very small screens */
+  }
+
+  .button-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px; /* Reduce gap for very small screens */
   }
 }
 
@@ -724,6 +742,7 @@ body.list-page .cards-container .card {
       flex-direction: column;
       align-items: flex-start;
       gap: 10px;
+      padding: 10px; /* Reduce padding for smaller screens */
   }
 
   .filter-container, .sort-container {
@@ -732,25 +751,29 @@ body.list-page .cards-container .card {
   }
 
   .sidebar {
-      width: 100%;
-      font-family: "comic-body";
-      height: auto;
-      position: static;
-      display: none;
-  }
-
-  .sidebar.open {
-      font-family: "comic-body";
-      display: block;
+      display: none; /* Hide the sidebar for mobile devices */
   }
 
   .toggle-sidebar-btn {
-      display: none;
+      display: none; /* Hide the toggle button for mobile devices */
   }
 
   .main-content.sidebar-open {
-      font-family: "comic-body";
       margin-right: 0;
+  }
+
+  .navigation h1 {
+    font-size: 1.2em; /* Smaller font size for mobile */
+  }
+
+  .navigation a {
+    font-size: 14px; /* Smaller font size for mobile */
+  }
+
+  .button-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
   }
 }
 
@@ -759,6 +782,7 @@ body.list-page .cards-container .card {
       flex-direction: column;
       align-items: flex-start;
       gap: 10px;
+      padding: 5px; /* Further reduce padding for very small screens */
   }
 
   .filter-container, .sort-container {
@@ -767,24 +791,28 @@ body.list-page .cards-container .card {
   }
 
   .sidebar {
-      font-family: "comic-body";
-      width: 100%;
-      height: auto;
-      position: static;
-      display: none;
-  }
-
-  .sidebar.open {
-      font-family: "comic-body";
-      display: block;
+      display: none; /* Hide the sidebar for very small screens */
   }
 
   .toggle-sidebar-btn {
-      display: none;
+      display: none; /* Hide the toggle button for very small screens */
   }
 
   .main-content.sidebar-open {
-      font-family: "comic-body";
       margin-right: 0;
+  }
+
+  .navigation h1 {
+    font-size: 1em; /* Even smaller font size for very small screens */
+  }
+
+  .navigation a {
+    font-size: 12px; /* Even smaller font size for very small screens */
+  }
+
+  .button-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px; /* Reduce gap for very small screens */
   }
 }

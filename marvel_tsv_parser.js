@@ -14,7 +14,7 @@ function filterCards() {
   // Filter cards
   const filteredCards = allCards.filter(card => {
     const powersetMatch = powersetFilter === "All" || card.getAttribute('data-powerset') === powersetFilter;
-    const rankMatch = (rankFilter === 0) || (parseInt(card.getAttribute('data-rank'), 10) <= rankFilter);
+    const rankMatch = parseInt(card.getAttribute('data-rank'), 10) <= rankFilter;
     return powersetMatch && rankMatch;
   });
 
@@ -47,7 +47,7 @@ function sortCards(sortBy) {
   // First filter the cards
   const filteredCards = allCards.filter(card => {
     const powersetMatch = powersetFilter === "All" || card.getAttribute('data-powerset') === powersetFilter;
-    const rankMatch = (rankFilter === 0) || (parseInt(card.getAttribute('data-rank'), 10) <= rankFilter);
+    const rankMatch = parseInt(card.getAttribute('data-rank'), 10) <= rankFilter;
     return powersetMatch && rankMatch;
   });
 
