@@ -1,8 +1,17 @@
+const CHARACTER_STEPS = {
+    BASICS: 1, // Rank, Occupation, Background
+    ABILITIES: 2,
+    POWERS: 3,
+    REVIEW: 4
+};
+
+let currentStep = CHARACTER_STEPS.BASICS;
+
 let characterData = {
-    name: '',
-    description: '',
-    rank: 1,
+    rank: 0,
+    origin: '',  // Add origin field
     occupation: '',
+    background: '',
     abilities: {
         melee: 0,
         agility: 0,
@@ -11,119 +20,109 @@ let characterData = {
         ego: 0,
         logic: 0
     },
+    abilityPoints: 0,
     powers: [],
-    currentPoints: 45,
-    maxPowers: 4 // Default for rank 1
+    maxPowers: 0,
+    powerPoints: 0 // Points from leftover ability points
 };
 
-const occupationDescriptions = {
-    "Accountant": "Financial expert skilled in managing resources and analyzing data. +1 to Logic checks involving mathematics or economics.",
-    "Artist": "Creative professional with keen eye for detail. +1 to Ego checks involving artistic expression or perception.",
-    "Athlete": "Professional sports player with peak physical condition. +1 to Agility checks involving physical activities.",
-    "Doctor": "Medical professional with extensive knowledge of human anatomy. +1 to Logic checks involving medicine or biology.",
-    "Engineer": "Technical expert skilled in building and fixing things. +1 to Logic checks involving technology or construction.",
-    "Journalist": "Information gatherer and storyteller. +1 to Vigilance checks involving investigation.",
-    "Law Enforcement": "Trained in upholding the law and protecting citizens. +1 to Vigilance checks involving crime scenes.",
-    "Lawyer": "Legal expert skilled in argument and negotiation. +1 to Ego checks involving persuasion.",
-    "Military": "Trained soldier with combat experience. +1 to Melee checks involving tactical situations.",
-    "Scientist": "Academic researcher pushing the boundaries of knowledge. +1 to Logic checks involving scientific analysis.",
-    "Student": "Currently learning and adaptable to new situations. +1 to Logic checks involving studying or learning.",
-    "Teacher": "Educator skilled in explaining complex concepts. +1 to Ego checks involving instruction.",
-    "Vigilante": "Self-appointed protector operating outside the law. +1 to Vigilance checks involving street knowledge."
-};
-
-const CHARACTER_STEPS = {
-    RANK: 1,
-    OCCUPATION: 2,
-    ABILITIES: 3,
-    POWERS: 4,
-    REVIEW: 5
-};
-
-let currentStep = CHARACTER_STEPS.RANK;
-
-// Initialize the character builder
+// Initialize the builder
 function initializeCharacterBuilder() {
-    showCurrentStep();
+    setupRankSection();
+    setupOriginSection();  // Add this line
+    setupOccupationSection();
+    setupAbilitiesSection();
+    setupPowersSection();
     setupNavigationButtons();
-    setupStepValidation();
-    loadAvailablePowers();
+    showCurrentStep();
 }
 
-function showCurrentStep() {
-    // Hide all sections
-    document.querySelectorAll('.form-section').forEach(section => {
-        section.style.display = 'none';
-    });
-
-    // Show current section
-    const stepMap = {
-        [CHARACTER_STEPS.RANK]: 'rank-section',
-        [CHARACTER_STEPS.OCCUPATION]: 'occupation-section',
-        [CHARACTER_STEPS.ABILITIES]: 'abilities-section',
-        [CHARACTER_STEPS.POWERS]: 'powers-section',
-        [CHARACTER_STEPS.REVIEW]: 'review-section'
-    };
-
-    document.getElementById(stepMap[currentStep]).style.display = 'block';
-    updateProgressIndicator();
-}
-
-function setupNavigationButtons() {
-    const prevBtn = document.getElementById('prevStep');
-    const nextBtn = document.getElementById('nextStep');
-
-    prevBtn.addEventListener('click', () => {
-        if (currentStep > CHARACTER_STEPS.RANK) {
-            currentStep--;
-            showCurrentStep();
-        }
-    });
-
-    nextBtn.addEventListener('click', () => {
-        if (validateCurrentStep()) {
-            if (currentStep < CHARACTER_STEPS.REVIEW) {
-                currentStep++;
-                showCurrentStep();
-            }
-        }
+// Rank Section
+function setupRankSection() {
+    document.getElementById('charRank').addEventListener('change', (e) => {
+        const rank = parseInt(e.target.value);
+        characterData.rank = rank;
+        characterData.abilityPoints = 5 * rank;
+        characterData.maxPowers = 4 * rank;
+        updateAbilityLimits();
+        updateCharacterPreview();
     });
 }
 
-function updateProgressIndicator() {
-    document.querySelectorAll('.step').forEach(step => {
-        step.classList.remove('active', 'completed');
-        if (parseInt(step.dataset.step) < currentStep) {
-            step.classList.add('completed');
-        } else if (parseInt(step.dataset.step) === currentStep) {
-            step.classList.add('active');
-        }
+function updateAbilityLimits() {
+    const maxScore = characterData.rank + 3;
+    document.querySelectorAll('.ability-input').forEach(input => {
+        input.max = maxScore;
     });
 }
 
-function validateCurrentStep() {
-    // Add validation logic for each step
-    return true;
+// Add origin setup function
+function setupOriginSection() {
+    document.getElementById('origin').addEventListener('change', (e) => {
+        characterData.origin = e.target.value;
+        updateCharacterPreview();
+    });
 }
 
-// Update ability scores and check point allocation
-function updateAbilityScores(ability, value) {
-    const oldValue = characterData.abilities[ability] || 0;
-    const pointChange = value - oldValue;
-    
-    if (characterData.currentPoints - pointChange < 0) {
-        alert('Not enough points available!');
+// Occupation Section
+function setupOccupationSection() {
+    document.getElementById('occupation').addEventListener('change', (e) => {
+        characterData.occupation = e.target.value;
+        updateOccupationDescription(e.target.value);
+        updateCharacterPreview();
+    });
+}
+
+// Abilities Section
+function setupAbilitiesSection() {
+    const abilityInputs = document.querySelectorAll('.ability-input');
+    abilityInputs.forEach(input => {
+        input.addEventListener('change', (e) => {
+            const ability = e.target.id;
+            const value = parseInt(e.target.value);
+            updateAbilityScore(ability, value);
+        });
+    });
+}
+
+function updateAbilityScore(ability, newValue) {
+    const oldValue = characterData.abilities[ability];
+    const pointChange = newValue - oldValue;
+    const maxScore = characterData.rank + 3;
+
+    if (newValue > maxScore) {
+        document.getElementById(ability).value = maxScore;
         return false;
     }
-    
-    characterData.abilities[ability] = value;
-    characterData.currentPoints -= pointChange;
-    
-    updatePointsDisplay();
-    validateCharacter();
+
+    if (characterData.abilityPoints - pointChange < 0) {
+        document.getElementById(ability).value = oldValue;
+        return false;
+    }
+
+    characterData.abilities[ability] = newValue;
+    characterData.abilityPoints -= pointChange;
+    document.getElementById('pointsRemaining').textContent = characterData.abilityPoints;
+    updateCharacterPreview();
 }
 
-// Load available powers based on rank
+// Powers Section
+function setupPowersSection() {
+    loadAvailablePowers();
+    document.getElementById('powerSelect').addEventListener('change', (e) => {
+        const selectedPowers = Array.from(e.target.selectedOptions).map(opt => opt.value);
+        if (selectedPowers.length > characterData.maxPowers) {
+            alert(`You can only select ${characterData.maxPowers} powers at rank ${characterData.rank}`);
+            e.preventDefault();
+            return;
+        }
+        characterData.powers = selectedPowers;
+        document.getElementById('powersCount').textContent = 
+            `${selectedPowers.length}/${characterData.maxPowers}`;
+        updateCharacterPreview();
+    });
+}
+
 function loadAvailablePowers() {
     fetch("data.tsv")
         .then(response => response.text())
@@ -149,26 +148,24 @@ function parsePowersFromTSV(tsvData) {
 
 function populatePowerSelect(powers) {
     const powerSelect = document.getElementById('powerSelect');
-    powerSelect.innerHTML = ''; // Clear existing options
+    powerSelect.innerHTML = '';
     
-    // Group powers by rank
-    const powersByRank = powers.reduce((acc, power) => {
-        if (!acc[power.rank]) acc[power.rank] = [];
-        acc[power.rank].push(power);
+    const powersBySet = powers.reduce((acc, power) => {
+        if (!acc[power.powerSet]) acc[power.powerSet] = [];
+        if (power.rank <= characterData.rank) {
+            acc[power.powerSet].push(power);
+        }
         return acc;
     }, {});
 
-    // Create option groups by rank
-    Object.keys(powersByRank).sort((a, b) => a - b).forEach(rank => {
+    Object.entries(powersBySet).forEach(([setName, setPowers]) => {
         const group = document.createElement('optgroup');
-        group.label = `Rank ${rank} Powers`;
+        group.label = setName;
         
-        powersByRank[rank].forEach(power => {
+        setPowers.forEach(power => {
             const option = document.createElement('option');
             option.value = power.name;
-            option.dataset.rank = power.rank;
-            option.dataset.powerSet = power.powerSet;
-            option.textContent = `${power.name} (${power.powerSet})`;
+            option.textContent = `${power.name} (Rank ${power.rank})`;
             option.title = power.description;
             group.appendChild(option);
         });
@@ -177,57 +174,153 @@ function populatePowerSelect(powers) {
     });
 }
 
-// Update character preview
+// Navigation
+function setupNavigationButtons() {
+    const prevBtn = document.getElementById('prevStep');
+    const nextBtn = document.getElementById('nextStep');
+
+    prevBtn.addEventListener('click', () => {
+        if (currentStep > CHARACTER_STEPS.BASICS) {
+            currentStep--;
+            showCurrentStep();
+        }
+    });
+
+    nextBtn.addEventListener('click', () => {
+        if (validateCurrentStep()) {
+            if (currentStep < CHARACTER_STEPS.REVIEW) {
+                currentStep++;
+                showCurrentStep();
+            }
+        }
+    });
+
+    // Initial state
+    prevBtn.disabled = currentStep === CHARACTER_STEPS.BASICS;
+    nextBtn.disabled = currentStep === CHARACTER_STEPS.REVIEW;
+}
+
+// Update validation
+function validateCurrentStep() {
+    switch(currentStep) {
+        case CHARACTER_STEPS.BASICS:
+            if (!characterData.rank || !characterData.origin || !characterData.occupation) {
+                alert('Please complete all basic information');
+                return false;
+            }
+            return true;
+        
+        case CHARACTER_STEPS.ABILITIES:
+            if (characterData.abilityPoints < 0) {
+                alert('You have used too many ability points');
+                return false;
+            }
+            // Store leftover points
+            characterData.powerPoints = characterData.abilityPoints;
+            return true;
+            
+        case CHARACTER_STEPS.POWERS:
+            if (characterData.powers.length > characterData.maxPowers) {
+                alert(`You can only select ${characterData.maxPowers} powers`);
+                return false;
+            }
+            return true;
+            
+        case CHARACTER_STEPS.REVIEW:
+            return true;
+            
+        default:
+            return false;
+    }
+}
+
 function updateCharacterPreview() {
-    document.getElementById('previewName').textContent = characterData.name;
-    document.getElementById('previewDescription').textContent = characterData.description;
-    
-    const powersList = document.getElementById('previewPowers');
-    powersList.innerHTML = '';
-    characterData.powers.forEach(power => {
-        const li = document.createElement('li');
-        li.textContent = power;
-        powersList.appendChild(li);
+    const preview = document.getElementById('review-section');
+    preview.innerHTML = `
+        <h3>Character Summary</h3>
+        <div class="preview-card">
+            <h4>Rank: ${characterData.rank}</h4>
+            <h4>Origin: ${characterData.origin}</h4>
+            <h4>Occupation: ${characterData.occupation}</h4>
+            <h4>Background: ${characterData.background}</h4>
+            <h4>Abilities:</h4>
+            <ul>
+                ${Object.entries(characterData.abilities)
+                    .map(([name, value]) => `<li>${name}: ${value}/${characterData.rank + 3}</li>`)
+                    .join('')}
+            </ul>
+            <h4>Powers (${characterData.powers.length}/${characterData.maxPowers}):</h4>
+            <ul>
+                ${characterData.powers.map(power => `<li>${power}</li>`).join('')}
+            </ul>
+            <p>Ability Points Remaining: ${characterData.abilityPoints}</p>
+            <p>Power Points from Abilities: ${characterData.powerPoints}</p>
+        </div>
+    `;
+}
+
+// Update HTML for background selection
+const backgroundHtml = `
+<div class="background-section">
+    <h3>Choose Your Background</h3>
+    <select id="background" required>
+        <option value="">Select Background</option>
+        <option value="Alien">Alien</option>
+        <option value="Mutant">Mutant</option>
+        <option value="Science Accident">Science Accident</option>
+        <option value="Tech Genius">Tech Genius</option>
+        <option value="Mystic">Mystic</option>
+    </select>
+    <p id="backgroundDescription" class="background-description"></p>
+</div>`;
+
+// Add to list.html after occupation section
+
+// Fix showCurrentStep function
+function showCurrentStep() {
+    // Hide all sections
+    document.querySelectorAll('.form-section').forEach(section => {
+        section.style.display = 'none';
+    });
+
+    // Show relevant sections
+    const sections = {
+        [CHARACTER_STEPS.BASICS]: ['rank-section', 'origin-section', 'occupation-section'],
+        [CHARACTER_STEPS.ABILITIES]: ['abilities-section'],
+        [CHARACTER_STEPS.POWERS]: ['powers-section'],
+        [CHARACTER_STEPS.REVIEW]: ['review-section']
+    };
+
+    sections[currentStep].forEach(sectionId => {
+        const section = document.getElementById(sectionId);
+        if (section) {
+            section.style.display = 'block';
+        }
+    });
+
+    // Update progress bar
+    document.querySelectorAll('.step').forEach(step => {
+        const stepNum = parseInt(step.getAttribute('data-step'));
+        step.classList.toggle('active', stepNum === currentStep);
+        step.classList.toggle('completed', stepNum < currentStep);
     });
 }
 
-// Save character
-function saveCharacter() {
-    const savedCharacters = JSON.parse(localStorage.getItem('marvelCharacters') || '[]');
-    savedCharacters.push(characterData);
-    localStorage.setItem('marvelCharacters', JSON.stringify(savedCharacters));
-    
-    alert('Character saved!');
+// Add progress bar update
+function updateProgressBar() {
+    document.querySelectorAll('.step').forEach(step => {
+        const stepNum = parseInt(step.getAttribute('data-step'));
+        if (stepNum === currentStep) {
+            step.classList.add('active');
+            step.classList.remove('completed');
+        } else if (stepNum < currentStep) {
+            step.classList.add('completed');
+            step.classList.remove('active');
+        } else {
+            step.classList.remove('active', 'completed');
+        }
+    });
 }
 
-function updateOccupationDescription(occupation) {
-    const descriptionElement = document.getElementById('occupationDescription');
-    descriptionElement.textContent = occupationDescriptions[occupation] || '';
-}
-
-// Event Listeners
-document.getElementById('charRank').addEventListener('change', (e) => {
-    characterData.rank = parseInt(e.target.value);
-    characterData.maxPowers = characterData.rank * 4;
-    document.getElementById('powersCount').textContent = `0/${characterData.maxPowers}`;
-    updateCharacterPreview();
-});
-
-document.getElementById('occupation').addEventListener('change', (e) => {
-    characterData.occupation = e.target.value;
-    updateOccupationDescription(e.target.value);
-    updateCharacterPreview();
-});
-
-document.getElementById('powerSelect').addEventListener('change', (e) => {
-    const selectedPowers = Array.from(e.target.selectedOptions).map(opt => opt.value);
-    if (selectedPowers.length > characterData.maxPowers) {
-        alert(`You can only select ${characterData.maxPowers} powers at rank ${characterData.rank}`);
-        e.preventDefault();
-        return;
-    }
-    characterData.powers = selectedPowers;
-    updateCharacterPreview();
-});
-
-initializeCharacterBuilder();
+// Initialize on load
+document.addEventListener('DOMContentLoaded', initializeCharacterBuilder);
