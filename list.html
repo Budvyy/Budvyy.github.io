@@ -8,50 +8,130 @@
 </head>
 <body>
     <header>
-        <!-- Logo as a link to the home page -->
-        <a href="index.html" class="logo">Logo</a>
-
+        <h1>Marvel Multiverse Character Builder</h1>
+        <button class="dark-mode-toggle" id="darkModeToggle">🌙</button>
+    </header>
+    <header class="navigation">
+        <!-- Image as a link to the home page -->
+        <a href="index.html">
+            <img src="images/marvel-logo.png" alt="Marvel Logo" class="logo">
+        </a>
         <div class="navigation">
             <a href="index.html">Home</a>
             <a href="list.html">My List</a>
         </div>
-        <!-- Dark Mode Toggle -->
-        <button class="dark-mode-toggle" id="darkModeToggle">🌙</button>
-        <h1>Marvel Multiverse Character Builder</h1>
     </header>
     <main>
-        
-        <section id="characterFormSection">
-            <h2>Build Your Character</h2>
-            <form id="characterForm">
-                <label for="charName">Character Name:</label>
-                <input type="text" id="charName" name="charName" required>
-
-                <label for="charDescription">Description:</label>
-                <textarea id="charDescription" name="charDescription" placeholder="Describe your character..."></textarea>
-
-                <label for="charPower">Select a Power:</label>
-                <select id="charPower">
-                    <!-- Predefined options -->
-                </select>
-                <button type="button" id="addNewPowerBtn">Add New Power</button>
-                <input type="text" id="newPowerInput" placeholder="Enter a new power..." style="display: none;">
-
-                <button type="button" id="saveCharacter">Save Character</button>
-            </form>
-        </section>
-
-        <section id="characterPreviewSection">
-            <h2>Character Preview</h2>
-            <div id="characterPreview">
-                <p><strong>Name:</strong> <span id="previewName">N/A</span></p>
-                <p><strong>Description:</strong> <span id="previewDescription">N/A</span></p>
-                <ul id="previewPowers">
-                    <li>No powers selected yet.</li>
-                </ul>
+        <div class="character-builder">
+            <!-- Progress Bar -->
+            <div class="progress-bar">
+                <div class="step active" data-step="1">Rank</div>
+                <div class="step" data-step="2">Occupation</div>
+                <div class="step" data-step="3">Abilities</div>
+                <div class="step" data-step="4">Powers</div>
+                <div class="step" data-step="5">Review</div>
             </div>
-        </section>
+
+            <!-- Step Sections -->
+            <div id="rank-section" class="form-section">
+                <h3>Choose Your Rank</h3>
+                <label for="charRank">Rank (1-6):</label>
+                <select id="charRank" required>
+                    <option value="">Select Rank</option>
+                    <option value="1">Rank 1 (4 Powers)</option>
+                    <option value="2">Rank 2 (8 Powers)</option>
+                    <option value="3">Rank 3 (12 Powers)</option>
+                    <option value="4">Rank 4 (16 Powers)</option>
+                    <option value="5">Rank 5 (20 Powers)</option>
+                    <option value="6">Rank 6 (24 Powers)</option>
+                </select>
+            </div>
+
+            <div id="occupation-section" class="form-section">
+                <h3>Choose Your Occupation</h3>
+                <label for="occupation">Choose Occupation:</label>
+                <select id="occupation" required>
+                    <option value="">Select Occupation</option>
+                    <option value="Accountant">Accountant</option>
+                    <option value="Artist">Artist</option>
+                    <option value="Athlete">Athlete</option>
+                    <option value="Doctor">Doctor</option>
+                    <option value="Engineer">Engineer</option>
+                    <option value="Journalist">Journalist</option>
+                    <option value="Law Enforcement">Law Enforcement</option>
+                    <option value="Lawyer">Lawyer</option>
+                    <option value="Military">Military</option>
+                    <option value="Scientist">Scientist</option>
+                    <option value="Student">Student</option>
+                    <option value="Teacher">Teacher</option>
+                    <option value="Vigilante">Vigilante</option>
+                </select>
+                <p id="occupationDescription" class="occupation-description"></p>
+            </div>
+
+            <div id="abilities-section" class="form-section">
+                <h3>Distribute Ability Points</h3>
+                <p>Points Remaining: <span id="pointsRemaining">45</span></p>
+                <div class="abilities-grid">
+                    <div class="ability-group">
+                        <label for="melee">Melee:</label>
+                        <input type="number" id="melee" class="ability-input" min="0" max="10" value="0">
+                    </div>
+                    <div class="ability-group">
+                        <label for="agility">Agility:</label>
+                        <input type="number" id="agility" class="ability-input" min="0" max="10" value="0">
+                    </div>
+                    <div class="ability-group">
+                        <label for="resilience">Resilience:</label>
+                        <input type="number" id="resilience" class="ability-input" min="0" max="10" value="0">
+                    </div>
+                    <div class="ability-group">
+                        <label for="vigilance">Vigilance:</label>
+                        <input type="number" id="vigilance" class="ability-input" min="0" max="10" value="0">
+                    </div>
+                    <div class="ability-group">
+                        <label for="ego">Ego:</label>
+                        <input type="number" id="ego" class="ability-input" min="0" max="10" value="0">
+                    </div>
+                    <div class="ability-group">
+                        <label for="logic">Logic:</label>
+                        <input type="number" id="logic" class="ability-input" min="0" max="10" value="0">
+                    </div>
+                </div>
+            </div>
+
+            <div id="powers-section" class="form-section">
+                <h3>Select Powers</h3>
+                <p>Available Powers: <span id="powersCount">0/4</span></p>
+                <select id="powerSelect" multiple size="10">
+                    <!-- Will be populated from data.tsv -->
+                </select>
+                <p class="powers-hint">Hold Ctrl/Cmd to select multiple powers</p>
+                <p id="powerDescription" class="power-description"></p>
+            </div>
+
+            <div id="review-section" class="form-section">
+                <h3>Review Character</h3>
+                <div class="preview-card">
+                    <h3 id="previewName"></h3>
+                    <p id="previewDescription"></p>
+                    <h4>Powers:</h4>
+                    <ul id="previewPowers"></ul>
+                    <h4>Abilities:</h4>
+                    <div id="previewAbilities"></div>
+                    <h4 id="previewRank"></h4>
+                    <h4 id="previewOccupation"></h4>
+                    <p id="powersCount"></p>
+                </div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div class="nav-buttons">
+                <button id="prevStep" class="nav-btn">Previous</button>
+                <button id="nextStep" class="nav-btn">Next</button>
+            </div>
+        </div>
     </main>
-    <script src="script.js"></script>
+    <script src="character-builder.js"></script>
 </body>
 </html>

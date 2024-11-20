@@ -250,6 +250,46 @@ header.dark-mode {
 
 /* Add your power set color coding styles here */
 
+.occupation-description {
+    margin-top: 0.5rem;
+    font-style: italic;
+    color: #666;
+}
+
+.power-description {
+    margin-top: 0.5rem;
+    font-style: italic;
+    color: #666;
+}
+
+#powerSelect {
+    width: 100%;
+    height: 200px;
+    margin-bottom: 1rem;
+    border: 2px solid #000;
+    border-radius: 5px;
+}
+
+#powerSelect optgroup {
+    font-weight: bold;
+    color: #333;
+}
+
+#powerSelect option {
+    padding: 5px;
+}
+
+.powers-hint {
+    font-size: 0.8rem;
+    color: #666;
+    margin-top: 0.5rem;
+}
+
+#powerSelect option:checked {
+    background-color: #1976d2;
+    color: white;
+}
+
 /* 10. Responsive Layout */
 @media (max-width: 768px) {
   .cards-container {
@@ -261,4 +301,69 @@ header.dark-mode {
   .cards-container {
       grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   }
+}
+
+/* Character Builder */
+.character-builder {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.progress-bar {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.progress-bar::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #ddd;
+  z-index: -1;
+}
+
+.step {
+  background: white;
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: 2px solid #ddd;
+  color: #666;
+}
+
+.step.active {
+  border-color: #1976d2;
+  background: #1976d2;
+  color: white;
+}
+
+.step.completed {
+  border-color: #4caf50;
+  background: #4caf50;
+  color: white;
+}
+
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.nav-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background: #1976d2;
+  color: white;
+  cursor: pointer;
+}
+
+.nav-btn:disabled {
+  background: #ddd;
+  cursor: not-allowed;
 }
