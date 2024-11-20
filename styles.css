@@ -427,17 +427,18 @@ body.dark-mode .button-container {
   }
 
   .navigation h1 {
-    font-size: 1.2em; /* Smaller font size for mobile */
+    font-size: 1.5em; /* Increase font size for mobile */
   }
 
   .navigation a {
-    font-size: 14px; /* Smaller font size for mobile */
+    font-size: 16px; /* Increase font size for mobile */
   }
 
   .button-container {
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
+    font-size: 16px; /* Increase font size for mobile */
   }
 }
 
@@ -472,17 +473,18 @@ body.dark-mode .button-container {
   }
 
   .navigation h1 {
-    font-size: 1em; /* Even smaller font size for very small screens */
+    font-size: 1.3em; /* Increase font size for very small screens */
   }
 
   .navigation a {
-    font-size: 12px; /* Even smaller font size for very small screens */
+    font-size: 14px; /* Increase font size for very small screens */
   }
 
   .button-container {
     flex-direction: column;
     align-items: flex-start;
     gap: 5px; /* Reduce gap for very small screens */
+    font-size: 14px; /* Increase font size for very small screens */
   }
 }
 
@@ -763,17 +765,18 @@ body.list-page .cards-container .card {
   }
 
   .navigation h1 {
-    font-size: 1.2em; /* Smaller font size for mobile */
+    font-size: 1.5em; /* Increase font size for mobile */
   }
 
   .navigation a {
-    font-size: 14px; /* Smaller font size for mobile */
+    font-size: 16px; /* Increase font size for mobile */
   }
 
   .button-container {
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
+    font-size: 16px; /* Increase font size for mobile */
   }
 }
 
@@ -803,16 +806,17 @@ body.list-page .cards-container .card {
   }
 
   .navigation h1 {
-    font-size: 1em; /* Even smaller font size for very small screens */
+    font-size: 1.3em; /* Increase font size for very small screens */
   }
 
   .navigation a {
-    font-size: 12px; /* Even smaller font size for very small screens */
+    font-size: 14px; /* Increase font size for very small screens */
   }
 
   .button-container {
     flex-direction: column;
     align-items: flex-start;
     gap: 5px; /* Reduce gap for very small screens */
+    font-size: 14px; /* Increase font size for very small screens */
   }
 }
