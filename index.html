@@ -6,6 +6,70 @@
     <title>Power Cards</title>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Comic+Sans+MS&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <style>
+        .sidebar {
+            position: fixed;
+            top: 180px; /* Adjust top to start after the second header */
+            right: -300px; /* Initially hide the sidebar */
+            width: 300px;
+            height: calc(100% - 60px); /* Adjust height to start after the second header */
+            background-color: #2c2c2c;
+            border-left: 1px solid #ddd;
+            padding: 20px;
+            overflow-y: auto;
+            display: none; /* Hide the sidebar initially */
+            flex-direction: column;
+            gap: 10px;
+            font-size: x-small;
+            transition: right 0.3s; /* Smooth transition */
+        }
+        .sidebar.open {
+            display: flex; /* Show the sidebar when open */
+            right: 0; /* Show the sidebar */
+        }
+        .sidebar h2 {
+            margin-top: 0;
+        }
+        .sidebar-content p {
+            font-size: 0.9em; /* Shrink text size */
+            word-wrap: break-word; /* Ensure long words break to fit */
+        }
+        .main-content {
+            transition: margin-right 0.3s; /* Smooth transition */
+        }
+        .main-content.sidebar-open {
+            margin-right: 320px; /* Adjust margin to accommodate the sidebar when open */
+        }
+        .toggle-sidebar-btn {
+            position: fixed;
+            top: 200px; /* Adjust top to align with the sidebar */
+            right: 0;
+            background-color: #2c2c2c;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 1000; /* Ensure the button is above other elements */
+        }
+        .filter-sort-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: calc(100% - 20px); /* Span the whole page with some padding */
+            padding: 10px; /* Add padding for better spacing */
+            box-sizing: border-box; /* Ensure padding is included in the width */
+        }
+        .filter-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .sort-container {
+            display: flex;
+            align-items: center;
+            gap: 10px; /* Ensure the sort button is right next to the dropdown */
+        }
+    </style>
 </head>
 
 <body>
@@ -19,9 +83,7 @@
             <a href="list.html">My List</a>
         </div>
     </header>
-    <div class="button-container">
-    </div>
-
+    
     <div class="filter-sort-container">
         <div class="filter-container">
             <label for="powerset-filter">Power Set: </label>
@@ -66,19 +128,46 @@
                 <option value="6">Rank 6</option>
             </select>
         </div>
-        <label for="sort-by">Sort:</label>
-        <select class="sort-by" id="sort-by">
-            <option value="alphabetical">Alphabetical</option>
-            <option value="rank">Rank</option>
-        </select>
+        <div class="sort-container">
+            <label for="sort-by">Sort:</label>
+            <select class="sort-by" id="sort-by">
+                <option value="alphabetical">Alphabetical</option>
+                <option value="rank">Rank</option>
+            </select>
+        </div>
     </div>
 
-    <!-- Cards container (4 columns layout) -->
-    <div id="cards-container" class="cards-container">
-        <!-- Cards will be appended here by JavaScript -->
+    <div class="main-content" id="main-content">
+        <div class="button-container">
+        </div>
+
+        <!-- Cards container (4 columns layout) -->
+        <div id="cards-container" class="cards-container">
+            <!-- Cards will be appended here by JavaScript -->
+        </div>
+    </div>
+
+    <!-- Sidebar for displaying card details -->
+    <button class="toggle-sidebar-btn">➡️</button>
+    <div class="sidebar" id="sidebar">
+        <h2>Card Details</h2>
+        <div id="sidebar-content">
+            <p>Hover over a card to see details here.</p>
+        </div>
     </div>
 
     <!-- Ensure type="module" -->
     <script type="module" src="marvel_tsv_parser.js"></script>
+    <script>
+        const sidebar = document.getElementById('sidebar');
+        const toggleSidebarBtn = document.querySelector('.toggle-sidebar-btn');
+        const mainContent = document.getElementById('main-content');
+
+        toggleSidebarBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+            mainContent.classList.toggle('sidebar-open');
+            toggleSidebarBtn.textContent = sidebar.classList.contains('open') ? '⬅️' : '➡️';
+        });
+    </script>
 </body>
 </html>

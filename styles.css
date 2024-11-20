@@ -498,7 +498,7 @@ body.dark-mode .button-container {
     font-size: 10pt;
   }
 
-  header, .navigation, .dark-mode-toggle, .print-btn {
+  header, .navigation, .dark-mode-toggle, .print-btn, .remove-all-btn {
     display: none;
   }
 

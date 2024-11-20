@@ -97,12 +97,24 @@ function displayMyList() {
         });
       }
 
+      // Add hover event listener to update sidebar
+      card.addEventListener("mouseover", () => {
+        const sidebarContent = document.getElementById("sidebar-content");
+        sidebarContent.innerHTML = `
+          <h3>${power.powerName}</h3>
+          <p><strong>Flavor Text:</strong> ${power.flavorText}</p>
+          <p><strong>Power Set:</strong> ${power.powerset}</p>
+          <p><strong>Rank:</strong> ${power.rank}</p>
+          ${powerData ? Object.entries(powerData).map(([key, value]) => key !== "Power" && value ? `<p><strong>${key}:</strong> ${value}</p>` : '').join('') : ''}
+        `;
+      });
+
       // Remove Button
       const removeBtn = document.createElement("button");
       removeBtn.textContent = "Remove";
       removeBtn.className = "remove-btn";
       removeBtn.addEventListener("click", () => {
-        removeFromList(index);
+        removeFromList(power.powerName);
       });
       card.appendChild(removeBtn);
       card.insertBefore(removeBtn, card.firstChild); // Move the remove button to the top
@@ -112,9 +124,9 @@ function displayMyList() {
   });
 }
 
-function removeFromList(index) {
+function removeFromList(powerName) {
   let myList = JSON.parse(localStorage.getItem("myList")) || [];
-  myList.splice(index, 1);
+  myList = myList.filter(item => item.powerName !== powerName);
   localStorage.setItem("myList", JSON.stringify(myList));
   displayMyList();
 }

@@ -6,6 +6,11 @@
     <title>My Power List</title>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Comic+Sans+MS&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <style>
+        .main-content {
+            margin-right: 0; /* Remove margin for sidebar */
+        }
+    </style>
 </head>
 
 <body>
@@ -20,12 +25,14 @@
         </div>
     </header>
     
-    <div class="button-container">
-        <button id="printList" class="print-btn">Print List</button>
-        <button class="remove-all-btn">Remove All</button>
-    </div>
-    <div id="myList-container" class="cards-container">
-        <!-- List items will be appended here by JavaScript -->
+    <div class="main-content">
+        <div class="button-container">
+            <button id="printList" class="print-btn">Print List</button>
+            <button class="remove-all-btn">Remove All</button>
+        </div>
+        <div id="myList-container" class="cards-container">
+            <!-- List items will be appended here by JavaScript -->
+        </div>
     </div>
 
     <script src="list.js"></script>
