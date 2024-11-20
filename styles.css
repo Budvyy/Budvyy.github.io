@@ -782,7 +782,7 @@ body.list-page .cards-container .card {
 
 @media (max-width: 480px) {
   .cards-container {
-    grid-template-columns: repeat(2, 2); /* Display 2 cards in a row */
+    grid: repeat(2, 2); /* Display 2 cards in a row */
     padding: 5px; /* Further reduce padding for very small screens */
   }
 
@@ -823,5 +823,49 @@ body.list-page .cards-container .card {
     align-items: flex-start;
     gap: 5px; /* Reduce gap for very small screens */
     font-size: 12px; /* Smaller font size for very small screens */
+  }
+}
+
+/* styles.css */
+
+@media (max-width: 480px) {
+  .cards-container {
+    grid-template-columns: repeat(2, 1fr); /* Display 2 cards in a row */
+    padding: 5px; /* Further reduce padding for very small screens */
+  }
+
+  .button-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px; /* Smaller font size for mobile */
+  }
+
+  .filter-sort-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 5px; /* Further reduce padding for very small screens */
+  }
+
+  .filter-container, .sort-container {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .sidebar {
+    display: none; /* Hide the sidebar for very small screens */
+  }
+
+  .toggle-sidebar-btn {
+    display: none; /* Hide the toggle button for very small screens */
+  }
+
+  .main-content.sidebar-open {
+    margin-right: 0;
+  }
+
+  .navigation h1 {
+    font-size: 1.1em; /* Smaller font size for very small screens */
   }
 }
