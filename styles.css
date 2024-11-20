@@ -398,7 +398,7 @@ body.dark-mode .button-container {
 /* 10. Responsive Layout */
 @media (max-width: 768px) {
   .cards-container {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(2, 1fr); /* Display 2 cards in a row */
     padding: 10px; /* Reduce padding for smaller screens */
   }
 
@@ -444,7 +444,7 @@ body.dark-mode .button-container {
 
 @media (max-width: 480px) {
   .cards-container {
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-template-columns: repeat(2, 1fr); /* Display 2 cards in a row */
     padding: 5px; /* Further reduce padding for very small screens */
   }
 
