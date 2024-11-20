@@ -491,47 +491,63 @@ body.dark-mode .button-container {
   font-size: 14px;
 }
 
+/* List page styles */
+body.list-page .cards-container .card {
+  background-color: #333; /* Dark grey background */
+  color: #fff; /* White text */
+  font-family: "comic-body";
+  font-size: small;
+}
+
 @media print {
   body {
     background: white;
     color: black;
-    font-size: 10pt;
+    font-size: 12pt; /* Increase font size for readability */
   }
 
-  header, .navigation, .dark-mode-toggle, .print-btn, .remove-all-btn {
+  header, .navigation, .dark-mode-toggle, .print-btn, .remove-all-btn, .toggle-sidebar-btn {
     display: none;
   }
 
   .list-page .cards-container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    overflow-x: auto;
+    display: block; /* Use block layout */
+    gap: 10px; /* Add some gap between cards */
+    font-family: "comic-body";
   }
 
-  .card {
-    page-break-inside: avoid;
+  .list-page .cards-container .card {
+    background-color: #fff !important; /* Ensure white background */
+    color: #000 !important; /* Ensure black text */
     border: 1px solid #000;
-    padding: 10px;
-    margin-bottom: 10px;
-    font-size: 10pt;
-    width: auto;
-    height: auto;
-    overflow: visible;
+    padding: 4px; /* Increase padding for readability */
+    margin: 0 0 15px 0; /* Add bottom margin */
+    page-break-inside: avoid;
+    width: 100%; /* Full width */
+    min-height: 2in; /* Minimum height of 3 inches */
+    box-shadow: none; /* Remove box shadow */
+    transform: none; /* Remove transform */
   }
 
-  .card h3, .card p {
-    font-size: 10pt;
-    margin: 0;
-    padding: 0;
+  .card h3 {
+    font-size: 14pt; /* Increase font size for readability */
+    margin-bottom: 10px; /* Add margin for readability */
+  }
+
+  .card p {
+    font-family: "comic-body";
+    font-size: 10pt; /* Increase font size for readability */
+    margin-bottom: 10px; /* Add margin for readability */
+    word-wrap: break-word; /* Ensure long words break to fit */
   }
 
   .remove-btn {
     display: none;
+    font-size: 0;
   }
 
-  .cards-container .card:nth-child(9n) {
-    page-break-after: always;
+  .cards-container .card:nth-child(1n) {
+    page-break-after:auto;
   }
 }
 
