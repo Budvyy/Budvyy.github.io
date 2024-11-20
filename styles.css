@@ -57,34 +57,25 @@ header {
   gap: 20px;
   justify-content: space-between;
   align-items: center;
-}
-
-.navigation {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  flex-wrap: wrap; /* Allow items to wrap */
 }
 
 .navigation .logo {
-    margin-right: 0; /* Remove margin to ensure the title is touching the logo */
+  flex: 0 0 auto; /* Prevent the logo from shrinking */
+  margin-right: 10px; /* Add some margin to the right */
 }
 
 .navigation h1 {
-    flex-grow: 1;
-    margin: 0;
-    padding-left: 10px; /* Add padding to create a small space between the logo and title */
-    font-size: 1.5em;
-    color: white; /* Ensure the title is always white */
-}
-
-.navigation .logo {
-  border-right: 1px solid #ccc;
-  padding-right: 10px;
-  height: 50px;
-  width: 90px;
+  flex: 1 1 auto; /* Allow the title to grow and shrink */
+  margin: 0;
+  padding-left: 10px; /* Add padding to create a small space between the logo and title */
+  font-size: 1.5em;
+  color: white; /* Ensure the title is always white */
+  text-align: center; /* Center the title */
 }
 
 .navigation a {
+  flex: 0 0 auto; /* Prevent the links from shrinking */
   padding: 10px 15px;
   background-color: #000;
   color: #fff;
@@ -426,6 +417,17 @@ body.dark-mode .button-container {
     margin-right: 0;
   }
 
+  .navigation {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .navigation .logo {
+    display: none; /* Hide the logo on mobile */
+    margin-bottom: 10px;
+  }
+
   .navigation h1 {
     font-size: 1.3em; /* Smaller font size for mobile */
   }
@@ -438,6 +440,24 @@ body.dark-mode .button-container {
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
+    font-size: 14px; /* Smaller font size for mobile */
+  }
+
+  .navigation {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .navigation .logo {
+    margin-bottom: 10px;
+  }
+
+  .navigation h1 {
+    font-size: 1.3em; /* Smaller font size for mobile */
+  }
+
+  .navigation a {
     font-size: 14px; /* Smaller font size for mobile */
   }
 }
@@ -472,6 +492,17 @@ body.dark-mode .button-container {
     margin-right: 0;
   }
 
+  .navigation {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .navigation .logo {
+    display: none; /* Hide the logo on very small screens */
+    margin-bottom: 10px;
+  }
+
   .navigation h1 {
     font-size: 1.1em; /* Smaller font size for very small screens */
   }
@@ -484,6 +515,24 @@ body.dark-mode .button-container {
     flex-direction: column;
     align-items: flex-start;
     gap: 5px; /* Reduce gap for very small screens */
+    font-size: 12px; /* Smaller font size for very small screens */
+  }
+
+  .navigation {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .navigation .logo {
+    margin-bottom: 10px;
+  }
+
+  .navigation h1 {
+    font-size: 1.1em; /* Smaller font size for very small screens */
+  }
+
+  .navigation a {
     font-size: 12px; /* Smaller font size for very small screens */
   }
 }
@@ -764,6 +813,17 @@ body.list-page .cards-container .card {
       margin-right: 0;
   }
 
+  .navigation {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .navigation .logo {
+    display: none; /* Hide the logo on mobile */
+    margin-bottom: 10px;
+  }
+
   .navigation h1 {
     font-size: 1.3em; /* Smaller font size for mobile */
   }
@@ -776,6 +836,24 @@ body.list-page .cards-container .card {
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
+    font-size: 14px; /* Smaller font size for mobile */
+  }
+
+  .navigation {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .navigation .logo {
+    margin-bottom: 10px;
+  }
+
+  .navigation h1 {
+    font-size: 1.3em; /* Smaller font size for mobile */
+  }
+
+  .navigation a {
     font-size: 14px; /* Smaller font size for mobile */
   }
 }
@@ -810,6 +888,17 @@ body.list-page .cards-container .card {
       margin-right: 0;
   }
 
+  .navigation {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .navigation .logo {
+    display: none; /* Hide the logo on very small screens */
+    margin-bottom: 10px;
+  }
+
   .navigation h1 {
     font-size: 1.1em; /* Smaller font size for very small screens */
   }
@@ -824,6 +913,24 @@ body.list-page .cards-container .card {
     gap: 5px; /* Reduce gap for very small screens */
     font-size: 12px; /* Smaller font size for very small screens */
   }
+
+  .navigation {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .navigation .logo {
+    margin-bottom: 10px;
+  }
+
+  .navigation h1 {
+    font-size: 1.1em; /* Smaller font size for very small screens */
+  }
+
+  .navigation a {
+    font-size: 12px; /* Smaller font size for very small screens */
+  }
 }
 
 /* styles.css */
@@ -833,7 +940,9 @@ body.list-page .cards-container .card {
     grid-template-columns: repeat(2, 1fr); /* Display 2 cards in a row */
     padding: 5px; /* Further reduce padding for very small screens */
   }
-
+  .logo {
+    display: none;
+  }
   .button-container {
     flex-direction: column;
     align-items: flex-start;
