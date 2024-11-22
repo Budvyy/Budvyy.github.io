@@ -1,0 +1,269 @@
+@font-face {
+    font-family: "comic";
+    src: url('../fonts/KOMIKAX_.ttf');
+  }
+  
+  @font-face {
+    font-family: "comic-body";
+    src: url("../fonts/KOMTXTK_.ttf");
+  }
+  
+  @font-face {
+    font-family: "comic-ft";
+    src: url("../fonts/KOMTXTI_.ttf");
+  }
+
+body {
+    background-color: #121212;
+    color: #e0e0e0;
+    font-family: 'comic-body', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 80px; /* Adjust based on header height */
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 1500px;
+    margin: 20px;
+}
+
+.box {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+#selected-powers-container {
+    border: 2px solid #333;
+    padding: 20px;
+    margin: 20px 0;
+    background-color: #1e1e1e;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: 'comic-body', sans-serif;
+    color: #e0e0e0;
+}
+#power-details-container {
+    border: 2px solid #333;
+    padding: 20px;
+    margin: 20px 0;
+    background-color: #1e1e1e;
+    width: 60px;
+    box-sizing: border-box;
+    font-family: 'comic-body', sans-serif;
+    color: #e0e0e0;
+}
+.selected-power-item {
+    margin: 5px 0;
+    font-weight: bold;
+    font-family: 'comic-body', sans-serif;
+    color: #e0e0e0;
+}
+.select-button {
+    margin-top: 10px;
+    border: 2px solid black;
+    padding: 8px 12px;
+    background-color: #001d84;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-family: 'comic', sans-serif;
+}
+.select-button:hover {
+    background-color: #b31b1b;
+    transform: scale(1.05);
+}
+
+#unselect-all-button {
+    margin-bottom: 10px;
+    border: 2px solid black;
+    padding: 8px 12px;
+    background-color: #001d84;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-family: 'comic', sans-serif;
+}
+
+#unselect-all-button:hover {
+    background-color: #b31b1b;
+    transform: scale(1.05);
+}
+
+.container-title {
+    text-align: center;
+    color: #e0e0e0;
+    font-family: 'comic', sans-serif;
+    margin: 20px 0 10px;
+}
+.powers-container {
+    display: flex; /* Ensure the main container is a flex container */
+    flex-direction: column; /* Keep titles in a column */
+    align-items: center;
+    max-width: 1500px;
+    margin: 20px 20px;
+    font-family: 'Arial', sans-serif;
+    color: #e0e0e0;
+}
+.main-content {
+    display: flex; /* Ensure the main content is a flex container */
+    flex-direction: row; /* Arrange containers in a row */
+    width: 100%;
+    box-sizing: border-box;
+    flex-wrap: nowrap; /* Prevent wrapping */
+    justify-content: space-between;
+    font-family: 'comic-body', sans-serif;
+    color: #e0e0e0;
+}
+.container-group {
+    display: flex; /* Ensure each group is a flex container */
+    flex-direction: column; /* Stack title and container vertically */
+    align-items: center;
+    flex: 1; /* Ensure each group takes equal space */
+    margin: 0 10px; /* Add space between groups */
+}
+#available-powers-container,
+#power-details-container,
+#selected-powers-container {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20px;
+    font-family: 'comic-body', sans-serif;
+    background-color: #1e1e1e;
+    border: 2px solid #333;
+    color: #e0e0e0;
+    margin: 20px 0;
+}
+#available-powers-container h2,
+#selected-powers-container h2,
+#power-details-container h2 {
+    text-align: center;
+    color: #e0e0e0;
+    font-family: 'comic', sans-serif;
+    margin-bottom: 10px;
+}
+
+.power-item h3 {
+    font-size: 18px;
+    font-family: 'comic', sans-serif;
+    color: #e0e0e0;
+}
+
+.flavor-text {
+    font-style: italic;
+    color: #cccccc;
+    margin-bottom: 10px;
+}
+
+header {
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+    padding: 20px;
+    text-align: center;
+    font-family: 'comic', sans-serif;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between; /* Space out the buttons */
+}
+
+header button {
+    margin: 0 20px; /* Add margin to the buttons */
+}
+
+button {
+    background-color: #001d84;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: 'comic', sans-serif;
+    text-transform: uppercase;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+button:hover {
+    background-color: #b31b1b;
+    transform: scale(1.05);
+}
+
+button:focus {
+    outline: none;
+}
+
+/* ...existing code... */
+
+.power-item {
+    height: auto; /* Allow height to adjust based on content */
+    overflow: hidden; /* Prevent content overflow */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 15px; /* Increase padding to give more room */
+    margin-bottom: 15px; /* Increase margin to separate power items */
+    border: 1px solid #333; /* Add border for better separation */
+    background-color: #2e2e2e; /* Slightly different background color */
+    box-sizing: border-box; /* Ensure padding and border are included in the height */
+}
+
+.power-item h3, .power-item .flavor-text, .power-item .first-column, .power-item .prerequisites, .power-item .select-button {
+    margin-bottom: 10px; /* Add margin to separate elements within the power item */
+}
+
+/* ...existing code... */
+
+#traits-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.trait-select {
+    margin: 10px 0;
+    padding: 8px;
+    border: 2px solid #333;
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+    font-family: 'comic-body', sans-serif;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 300px;
+}
+
+/* ...existing code... */
+
+select {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+    border: 2px solid #333;
+    padding: 10px;
+    border-radius: 5px;
+    font-family: 'comic-body', sans-serif;
+    font-size: 16px;
+    width: 100%;
+    max-width: 300px;
+    margin: 10px 0;
+}
+
+select:focus {
+    outline: none;
+    border-color: #b31b1b;
+}
+
+/* ...existing code... */
+

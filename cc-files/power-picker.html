@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Power Picker</title>
+    <link rel="stylesheet" href="cc-styles.css">
+</head>
+<body>
+    <header class="navigation">
+        <button id="back-button" style="display: none;">Back</button> <!-- Hide back button initially -->
+        <button id="next-button" style="margin-left: auto;">Next</button> <!-- Ensure next button is on the far right -->
+    </header>
+
+    <!-- Step 0: Choose Origin Story -->
+    <div id="step0-container">
+        <h2>Origin Story</h2>
+        <select id="origin-select">
+            <option value="">Select Origin Story</option>
+            <option value="Mutant">Mutant</option>
+            <option value="Alien">Alien</option>
+            <option value="Experiment">Experiment</option>
+            <option value="Mystical">Mystical</option>
+            <option value="Technological">Technological</option>
+            <!-- Add more origin stories as needed -->
+        </select>
+    </div>
+
+    <!-- Step 1: Choose Rank and Powerset -->
+    <div id="step1-container" style="display: none;">
+        <h2>Rank</h2>
+        <select id="rank-select" onchange="updatePowerCount()">
+            <option value="">Select Rank</option>
+            <option value="1">Rank 1</option>
+            <option value="2">Rank 2</option>
+            <option value="3">Rank 3</option>
+            <option value="4">Rank 4</option>
+            <option value="5">Rank 5</option>
+            <option value="6">Rank 6</option>
+        </select>
+        <span id="power-count"></span> <!-- Display power count here -->
+        <h2>Powerset(s)
+        <h3><input type="checkbox" id="special-training-checkbox" onchange="toggleSpecialTraining()"> Special Training</h3>
+        </h2>
+        <select class="powerset-select">
+            <option value="">Select Powerset</option>
+            <option value="None">Basic</option>
+            <option value="Elemental Control">Elemental Control</option>
+            <option value="Healing">Healing</option>
+            <option value="Illusion">Illusion</option>
+            <option value="Luck">Luck</option>
+            <option value="Martial Arts">Martial Arts</option>
+            <option value="Melee Weapons">Melee Weapons</option>
+            <option value="Magic">Magic</option>
+            <option value="Omniversal Travel">Omniversal Travel</option>
+            <option value="Phasing">Phasing</option>
+            <option value="Power Control">Power Control</option>
+            <option value="Plasticity">Plasticity</option>
+            <option value="Ranged weapons">Ranged weapons</option>
+            <option value="Resize">Resize</option>
+            <option value="Shield Bearer">Shield Bearer</option>
+            <option value="Sixth Sense">Sixth Sense</option>
+            <option value="Spider-Powers">Spider-Powers</option>
+            <option value="Super-Speed">Super-Speed</option>
+            <option value="Super-Strength">Super-Strength</option>
+            <option value="Tactics">Tactics</option>
+            <option value="Telekinesis">Telekinesis</option>
+            <option value="Telepathy">Telepathy</option>
+            <option value="Teleportation">Teleportation</option>
+            <option value="Translation">Translation</option>
+            <option value="Weather Control">Weather Control</option>
+        </select>
+        <select class="powerset-select">
+            <option value="">Select Powerset</option>
+            <option value="None">Basic</option>
+            <option value="Elemental Control">Elemental Control</option>
+            <option value="Healing">Healing</option>
+            <option value="Illusion">Illusion</option>
+            <option value="Luck">Luck</option>
+            <option value="Martial Arts">Martial Arts</option>
+            <option value="Melee Weapons">Melee Weapons</option>
+            <option value="Magic">Magic</option>
+            <option value="Omniversal Travel">Omniversal Travel</option>
+            <option value="Phasing">Phasing</option>
+            <option value="Power Control">Power Control</option>
+            <option value="Plasticity">Plasticity</option>
+            <option value="Ranged weapons">Ranged weapons</option>
+            <option value="Resize">Resize</option>
+            <option value="Shield Bearer">Shield Bearer</option>
+            <option value="Sixth Sense">Sixth Sense</option>
+            <option value="Spider-Powers">Spider-Powers</option>
+            <option value="Super-Speed">Super-Speed</option>
+            <option value="Super-Strength">Super-Strength</option>
+            <option value="Tactics">Tactics</option>
+            <option value="Telekinesis">Telekinesis</option>
+            <option value="Telepathy">Telepathy</option>
+            <option value="Teleportation">Teleportation</option>
+            <option value="Translation">Translation</option>
+            <option value="Weather Control">Weather Control</option>
+        </select>
+        <select class="powerset-select">
+            <option value="">Select Powerset</option>
+            <option value="None">Basic</option>
+            <option value="Elemental Control">Elemental Control</option>
+            <option value="Healing">Healing</option>
+            <option value="Illusion">Illusion</option>
+            <option value="Luck">Luck</option>
+            <option value="Martial Arts">Martial Arts</option>
+            <option value="Melee Weapons">Melee Weapons</option>
+            <option value="Magic">Magic</option>
+            <option value="Omniversal Travel">Omniversal Travel</option>
+            <option value="Phasing">Phasing</option>
+            <option value="Power Control">Power Control</option>
+            <option value="Plasticity">Plasticity</option>
+            <option value="Ranged weapons">Ranged weapons</option>
+            <option value="Resize">Resize</option>
+            <option value="Shield Bearer">Shield Bearer</option>
+            <option value="Sixth Sense">Sixth Sense</option>
+            <option value="Spider-Powers">Spider-Powers</option>
+            <option value="Super-Speed">Super-Speed</option>
+            <option value="Super-Strength">Super-Strength</option>
+            <option value="Tactics">Tactics</option>
+            <option value="Telekinesis">Telekinesis</option>
+            <option value="Telepathy">Telepathy</option>
+            <option value="Teleportation">Teleportation</option>
+            <option value="Translation">Translation</option>
+            <option value="Weather Control">Weather Control</option>
+        </select>
+        <select class="powerset-select">
+            <option value="">Select Powerset</option>
+            <option value="None">Basic</option>
+            <option value="Elemental Control">Elemental Control</option>
+            <option value="Healing">Healing</option>
+            <option value="Illusion">Illusion</option>
+            <option value="Luck">Luck</option>
+            <option value="Martial Arts">Martial Arts</option>
+            <option value="Melee Weapons">Melee Weapons</option>
+            <option value="Magic">Magic</option>
+            <option value="Omniversal Travel">Omniversal Travel</option>
+            <option value="Phasing">Phasing</option>
+            <option value="Power Control">Power Control</option>
+            <option value="Plasticity">Plasticity</option>
+            <option value="Ranged weapons">Ranged weapons</option>
+            <option value="Resize">Resize</option>
+            <option value="Shield Bearer">Shield Bearer</option>
+            <option value="Sixth Sense">Sixth Sense</option>
+            <option value="Spider-Powers">Spider-Powers</option>
+            <option value="Super-Speed">Super-Speed</option>
+            <option value="Super-Strength">Super-Strength</option>
+            <option value="Tactics">Tactics</option>
+            <option value="Telekinesis">Telekinesis</option>
+            <option value="Telepathy">Telepathy</option>
+            <option value="Teleportation">Teleportation</option>
+            <option value="Translation">Translation</option>
+            <option value="Weather Control">Weather Control</option>
+        </select>
+        <select class="powerset-select">
+            <option value="">Select Powerset</option>
+            <option value="None">Basic</option>
+            <option value="Elemental Control">Elemental Control</option>
+            <option value="Healing">Healing</option>
+            <option value="Illusion">Illusion</option>
+            <option value="Luck">Luck</option>
+            <option value="Martial Arts">Martial Arts</option>
+            <option value="Melee Weapons">Melee Weapons</option>
+            <option value="Magic">Magic</option>
+            <option value="Omniversal Travel">Omniversal Travel</option>
+            <option value="Phasing">Phasing</option>
+            <option value="Power Control">Power Control</option>
+            <option value="Plasticity">Plasticity</option>
+            <option value="Ranged weapons">Ranged weapons</option>
+            <option value="Resize">Resize</option>
+            <option value="Shield Bearer">Shield Bearer</option>
+            <option value="Sixth Sense">Sixth Sense</option>
+            <option value="Spider-Powers">Spider-Powers</option>
+            <option value="Super-Speed">Super-Speed</option>
+            <option value="Super-Strength">Super-Strength</option>
+            <option value="Tactics">Tactics</option>
+            <option value="Telekinesis">Telekinesis</option>
+            <option value="Telepathy">Telepathy</option>
+            <option value="Teleportation">Teleportation</option>
+            <option value="Translation">Translation</option>
+            <option value="Weather Control">Weather Control</option>
+        </select>
+        <select class="powerset-select">
+            <option value="">Select Powerset</option>
+            <option value="None">Basic</option>
+            <option value="Elemental Control">Elemental Control</option>
+            <option value="Healing">Healing</option>
+            <option value="Illusion">Illusion</option>
+            <option value="Luck">Luck</option>
+            <option value="Martial Arts">Martial Arts</option>
+            <option value="Melee Weapons">Melee Weapons</option>
+            <option value="Magic">Magic</option>
+            <option value="Omniversal Travel">Omniversal Travel</option>
+            <option value="Phasing">Phasing</option>
+            <option value="Power Control">Power Control</option>
+            <option value="Plasticity">Plasticity</option>
+            <option value="Ranged weapons">Ranged weapons</option>
+            <option value="Resize">Resize</option>
+            <option value="Shield Bearer">Shield Bearer</option>
+            <option value="Sixth Sense">Sixth Sense</option>
+            <option value="Spider-Powers">Spider-Powers</option>
+            <option value="Super-Speed">Super-Speed</option>
+            <option value="Super-Strength">Super-Strength</option>
+            <option value="Tactics">Tactics</option>
+            <option value="Telekinesis">Telekinesis</option>
+            <option value="Telepathy">Telepathy</option>
+            <option value="Teleportation">Teleportation</option>
+            <option value="Translation">Translation</option>
+            <option value="Weather Control">Weather Control</option>
+        </select>
+    </div>
+
+    <!-- Step 2: Choose Tags and Traits -->
+    <div id="step2-container" style="display: none;">
+        <h2>Tags</h2>
+        <select id="tags-select" multiple>
+            <option value="tag1">Tag 1</option>
+            <option value="tag2">Tag 2</option>
+            <option value="tag3">Tag 3</option>
+            <!-- Add more tags as needed -->
+        </select>
+        <h2>Traits</h2>
+        <div id="traits-container">
+            <!-- Trait dropdowns will be dynamically added here -->
+        </div>
+    </div>
+
+    <!-- Step 3: Choose Powers -->
+    <div id="step3-container" style="display: none;">
+        <!-- Search Input -->
+        <input type="text" id="searchInput" placeholder="Search powers..." onkeyup="filterPowers()">
+        <!-- Powers Left to Select -->
+        <div id="powers-left-container">
+            <span id="powers-left"></span> <!-- Display powers left here -->
+        </div>
+        <!-- Main Container with class "powers-container" -->
+        <div class="powers-container">
+            <!-- Container for Available and Selected Powers -->
+            <div class="main-content">
+                <!-- Group for Available Powers -->
+                <div class="container-group">
+                    <h2 class="container-title">Available Powers</h2>
+                    <div id="available-powers-container">
+                        <!-- Available powers will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Group for Power Details -->
+                <div class="container-group">
+                    <h2 class="container-title">Power Details</h2>
+                    <div id="power-details-container">
+                        <!-- Power details will be displayed here -->
+                    </div>
+                </div>
+
+                <!-- Group for Selected Powers -->
+                <div class="container-group">
+                    <button id="unselect-all-button">Unselect All</button> <!-- Add this line -->
+                    <h2 class="container-title">Selected Powers</h2>
+                    <div id="selected-powers-container">
+                        <!-- Selected powers will be displayed here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include the JavaScript file -->
+    <script src="powers.js"></script>
+</body>
+</html>
