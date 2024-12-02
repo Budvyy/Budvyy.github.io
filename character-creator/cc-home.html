@@ -331,10 +331,113 @@
         Step 4 Content
 
     </div>
-    <!-- Add more steps as needed -->
+    <div class="step">
+
+        Step 5 Content
+
+    </div>
+    <div class="step">
+
+        Step 6 Content
+
+    </div>
+    <div class="step">
+        <h1>Step 7: Summary</h1>
+        <div class="summary-section">
+            <h2>Character Summary</h2>
+            <p><strong>Origin:</strong> <span id="summaryOrigin"></span></p>
+            <p><strong>Origin Description:</strong> <span id="summaryOriginDescription"></span></p>
+            <p><strong>Occupation:</strong> <span id="summaryOccupation"></span></p>
+            <p><strong>Occupation Description:</strong> <span id="summaryOccupationDescription"></span></p>
+            <p><strong>Rank:</strong> <span id="summaryRank"></span></p>
+            <p><strong>Powers:</strong> <span id="summaryPowers"></span></p>
+            <p><strong>Attributes:</strong></p>
+            <ul>
+                <li><strong>Melee:</strong> <span id="summaryMelee"></span></li>
+                <li><strong>Agility:</strong> <span id="summaryAgility"></span></li>
+                <li><strong>Resilience:</strong> <span id="summaryResilience"></span></li>
+                <li><strong>Vigilance:</strong> <span id="summaryVigilance"></span></li>
+                <li><strong>Ego:</strong> <span id="summaryEgo"></span></li>
+                <li><strong>Logic:</strong> <span id="summaryLogic"></span></li>
+            </ul>
+            <p><strong>Traits:</strong></p>
+            <ul id="summaryTraits"></ul>
+            <p><strong>Edges:</strong></p>
+            <ul id="summaryEdges"></ul>
+            <p><strong>Modifiers:</strong></p>
+            <ul id="summaryModifiers"></ul>
+            <p><strong>Additional Powers:</strong></p>
+            <ul id="summaryAdditionalPowers"></ul>
+        </div>
+    </div>
     
 
     <script src="cc-data.js"></script>
     <script src="cc-script.js"></script>
+    <script>
+        function updateSummary() {
+            const origin = document.getElementById('origin').value;
+            const occupation = document.getElementById('occupation').value;
+
+            document.getElementById('summaryOrigin').innerText = origin;
+            document.getElementById('summaryOriginDescription').innerText = originData[origin]?.description || '';
+            document.getElementById('summaryOccupation').innerText = occupation;
+            document.getElementById('summaryOccupationDescription').innerText = occupationData[occupation]?.description || '';
+            document.getElementById('summaryRank').innerText = document.querySelector('.rank').value;
+            document.getElementById('summaryPowers').innerText = Array.from(document.querySelectorAll('#powerSelections select'))
+                .map(select => select.value)
+                .filter(value => value !== "")
+                .join(', ');
+            document.getElementById('summaryMelee').innerText = document.getElementById('melee').value;
+            document.getElementById('summaryAgility').innerText = document.getElementById('agility').value;
+            document.getElementById('summaryResilience').innerText = document.getElementById('resilience').value;
+            document.getElementById('summaryVigilance').innerText = document.getElementById('vigilance').value;
+            document.getElementById('summaryEgo').innerText = document.getElementById('ego').value;
+            document.getElementById('summaryLogic').innerText = document.getElementById('logic').value;
+
+            const traits = [...(originData[origin]?.traits || []), ...(occupationData[occupation]?.traits || [])];
+            const traitsList = document.getElementById('summaryTraits');
+            const edgesList = document.getElementById('summaryEdges');
+            const modifiersList = document.getElementById('summaryModifiers');
+            const additionalPowersList = document.getElementById('summaryAdditionalPowers');
+            traitsList.innerHTML = '';
+            edgesList.innerHTML = '';
+            modifiersList.innerHTML = '';
+            additionalPowersList.innerHTML = '';
+
+            traits.forEach(trait => {
+                const traitKey = trait.replace(/\s+/g, '');
+                const description = trait.startsWith('Connections') ? traitData.Connections.description : traitData[traitKey]?.description || '';
+                const traitItem = document.createElement('li');
+                traitItem.innerHTML = `<strong>${trait}:</strong> ${description}`;
+                traitsList.appendChild(traitItem);
+
+                if (traitData[traitKey]?.edges) {
+                    traitData[traitKey].edges.forEach(edge => {
+                        const edgeItem = document.createElement('li');
+                        edgeItem.innerText = edge;
+                        edgesList.appendChild(edgeItem);
+                    });
+                }
+
+                if (traitData[traitKey]?.modifiers) {
+                    traitData[traitKey].modifiers.forEach(modifier => {
+                        const modifierItem = document.createElement('li');
+                        modifierItem.innerText = modifier;
+                        modifiersList.appendChild(modifierItem);
+                    });
+                }
+            });
+
+            const additionalPowers = [...(originData[origin]?.powers || []), ...(occupationData[occupation]?.powers || [])];
+            additionalPowers.forEach(power => {
+                const powerItem = document.createElement('li');
+                powerItem.innerText = power;
+                additionalPowersList.appendChild(powerItem);
+            });
+        }
+
+        document.getElementById('nextBtn').addEventListener('click', updateSummary);
+    </script>
 </body>
 </html>

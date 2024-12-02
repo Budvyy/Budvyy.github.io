@@ -166,10 +166,10 @@ function limitAttributePoints() {
     if (totalPoints > maxPoints) {
         alert(`You have exceeded the maximum points limit of ${maxPoints}.`);
         attributes.forEach(attr => {
-            const excessPoints = totalPoints - maxPoints;
-            const newValue = parseInt(attr.value) - excessPoints;
             attr.value = newValue >= 0 ? newValue : 0;
         });
+
+    
     }
 
     const pointsLeft = maxPoints - totalPoints;
