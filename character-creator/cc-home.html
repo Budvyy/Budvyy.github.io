@@ -39,34 +39,30 @@
                     <option value="Deviant">Deviant</option>
                     <option value="Eternal">Eternal</option>
                     <option value="HighTech">High Tech</option>
-                    <option value="Android">High Tech: Android</option>
-                    <option value="battleSuit">High Tech: Battle Suit</option>
-                    <option value="Cybernetics">High Tech: Cybernetics</option>
-                    <option value="pymParticles">High Tech: Pym Particles</option>
+                    <option value="HighTechAndroid">High Tech: Android</option>
+                    <option value="HighTechBattleSuit">High Tech: Battle Suit</option>
+                    <option value="HighTechCybernetics">High Tech: Cybernetics</option>
+                    <option value="HighTechPymParticles">High Tech: Pym Particles</option>
                     <option value="Inhuman">Inhuman</option>
                     <option value="Magic">Magic</option>
+                    <option value="MagicChaosMagic">Magic: Chaos Magic</option>
+                    <option value="MagicDemonic">Magic: Demonic</option>
+                    <option value="MagicSorcery">Magic: Sorcery</option>
                     <option value="Monstrus">Monstrus</option>
-                    <option value="Vampire">Monstrus: Vampire</option>
-                    <option value="Werewolf">Monstrus: Werewolf</option>
+                    <option value="MonstrousVampire">Monstrus: Vampire</option>
+                    <option value="MonstrousWerewolf">Monstrus: Werewolf</option>
                     <option value="Mutant">Mutant</option>
                     <option value="Mythic">Mythic</option>
-                    <option value="Asgardian">Mythic: Asgardian</option>
-                    <option value="Olympian">Mythic: Olympian</option>
-                    <option value="specialTraining">Special Training</option>
-                    <option value="spiritOfVengence">Spirit of Vengence</option>
+                    <option value="MythicAsgardian">Mythic: Asgardian</option>
+                    <option value="MythicOlympian">Mythic: Olympian</option>
+                    <option value="SpecialTraining">Special Training</option>
+                    <option value="SpiritOfVengence">Spirit of Vengence</option>
                     <option value="Symbiote">Symbiote</option>
                     <option value="Unknown">Unknown</option>
                     <option value="WeirdScience">Weird Science</option>
+                    <option value="WeirdScienceGammaMutate">Weird Science: Gamma Mutate</option>
                 </select>
-                <p id="originDescription" class="item-description"></p>
-                <div id="originTraitsContainer">
-                    <p class="list-header">Traits:</p>
-                    <ul id="originTraits" class="traits-list"></ul>
-                </div>
-                <div id="originPowersContainer">
-                    <p class="list-header">Powers:</p>
-                    <ul id="originPowers" class="powers-list"></ul>
-                </div>
+                <div id="originDescription" class="item-description"></div>
             </div>
             
             <div id="subOriginContainer">
@@ -97,7 +93,7 @@
                     <option value="Student">Student</option>
                     <option value="Tycoon">Tycoon</option>
                 </select>
-                <p id="occupationDescription" class="item-description"></p>
+                <div id="occupationDescription" class="item-description"></div>
                 <div id="occupationTraitsContainer">
                     <p class="list-header">Traits:</p>
                     <ul id="occupationTraits" class="traits-list"></ul>
@@ -106,14 +102,229 @@
         </div>
     </div>
     <div class="step">
-
-        Step 2 Content
-
+        <h1>Step 2: Rank & Power Selection</h1>
+        <!-- Rank Selection -->
+        <div class="rank-attribute-container">
+            <select class="rank">
+                <option value="" disabled selected>Please select a rank</option>
+                <option value="1">Rank 1</option>
+                <option value="2">Rank 2</option>
+                <option value="3">Rank 3</option>
+                <option value="4">Rank 4</option>
+                <option value="5">Rank 5</option>
+                <option value="6">Rank 6</option>
+            </select>
+            <div id="rankDetails" class="rank-details"></div>
+            <div id="powerSelections">
+                
+                <select id="power1">
+                    <option value="" disabled selected>Please select a powerset</option>
+                    <option value="None">Basic</option>
+                    <option value="ElementalControl">Elemental Control</option>
+                    <option value="Healing">Healing</option>
+                    <option value="Illusion">Illusion</option>
+                    <option value="Luck">Luck</option>
+                    <option value="MartialArts">Martial Arts</option>
+                    <option value="MeleeWeapons">Melee Weapons</option>
+                    <option value="Magic">Magic</option>
+                    <option value="OmniversalTravel">Omniversal Travel</option>
+                    <option value="Phasing">Phasing</option>
+                    <option value="PowerControl">Power Control</option>
+                    <option value="Plasticity">Plasticity</option>
+                    <option value="RangedWeapons">Ranged Weapons</option>
+                    <option value="Resize">Resize</option>
+                    <option value="ShieldBearer">Shield Bearer</option>
+                    <option value="SixthSense">Sixth Sense</option>
+                    <option value="SpiderPowers">Spider Powers</option>
+                    <option value="SuperSpeed">Super Speed</option>
+                    <option value="SuperStrength">Super Strength</option>
+                    <option value="Tactics">Tactics</option>
+                    <option value="Telekinesis">Telekinesis</option>
+                    <option value="Telepathy">Telepathy</option>
+                    <option value="Teleportation">Teleportation</option>
+                    <option value="Translation">Translation</option>
+                    <option value="WeatherControl">Weather Control</option>
+                </select>
+                
+                <select id="power2" disabled>
+                    <option value="" disabled selected>Please select a powerset</option>
+                    <option value="None">Basic</option>
+                    <option value="ElementalControl">Elemental Control</option>
+                    <option value="Healing">Healing</option>
+                    <option value="Illusion">Illusion</option>
+                    <option value="Luck">Luck</option>
+                    <option value="MartialArts">Martial Arts</option>
+                    <option value="MeleeWeapons">Melee Weapons</option>
+                    <option value="Magic">Magic</option>
+                    <option value="OmniversalTravel">Omniversal Travel</option>
+                    <option value="Phasing">Phasing</option>
+                    <option value="PowerControl">Power Control</option>
+                    <option value="Plasticity">Plasticity</option>
+                    <option value="RangedWeapons">Ranged Weapons</option>
+                    <option value="Resize">Resize</option>
+                    <option value="ShieldBearer">Shield Bearer</option>
+                    <option value="SixthSense">Sixth Sense</option>
+                    <option value="SpiderPowers">Spider Powers</option>
+                    <option value="SuperSpeed">Super Speed</option>
+                    <option value="SuperStrength">Super Strength</option>
+                    <option value="Tactics">Tactics</option>
+                    <option value="Telekinesis">Telekinesis</option>
+                    <option value="Telepathy">Telepathy</option>
+                    <option value="Teleportation">Teleportation</option>
+                    <option value="Translation">Translation</option>
+                    <option value="WeatherControl">Weather Control</option>
+                </select>
+                
+                <select id="power3" disabled>
+                    <option value="" disabled selected>Please select a powerset</option>
+                    <option value="None">Basic</option>
+                    <option value="ElementalControl">Elemental Control</option>
+                    <option value="Healing">Healing</option>
+                    <option value="Illusion">Illusion</option>
+                    <option value="Luck">Luck</option>
+                    <option value="MartialArts">Martial Arts</option>
+                    <option value="MeleeWeapons">Melee Weapons</option>
+                    <option value="Magic">Magic</option>
+                    <option value="OmniversalTravel">Omniversal Travel</option>
+                    <option value="Phasing">Phasing</option>
+                    <option value="PowerControl">Power Control</option>
+                    <option value="Plasticity">Plasticity</option>
+                    <option value="RangedWeapons">Ranged Weapons</option>
+                    <option value="Resize">Resize</option>
+                    <option value="ShieldBearer">Shield Bearer</option>
+                    <option value="SixthSense">Sixth Sense</option>
+                    <option value="SpiderPowers">Spider Powers</option>
+                    <option value="SuperSpeed">Super Speed</option>
+                    <option value="SuperStrength">Super Strength</option>
+                    <option value="Tactics">Tactics</option>
+                    <option value="Telekinesis">Telekinesis</option>
+                    <option value="Telepathy">Telepathy</option>
+                    <option value="Teleportation">Teleportation</option>
+                    <option value="Translation">Translation</option>
+                    <option value="WeatherControl">Weather Control</option>
+                </select>
+                
+                <select id="power4" disabled>
+                    <option value="" disabled selected>Please select a powerset</option>
+                    <option value="None">Basic</option>
+                    <option value="ElementalControl">Elemental Control</option>
+                    <option value="Healing">Healing</option>
+                    <option value="Illusion">Illusion</option>
+                    <option value="Luck">Luck</option>
+                    <option value="MartialArts">Martial Arts</option>
+                    <option value="MeleeWeapons">Melee Weapons</option>
+                    <option value="Magic">Magic</option>
+                    <option value="OmniversalTravel">Omniversal Travel</option>
+                    <option value="Phasing">Phasing</option>
+                    <option value="PowerControl">Power Control</option>
+                    <option value="Plasticity">Plasticity</option>
+                    <option value="RangedWeapons">Ranged Weapons</option>
+                    <option value="Resize">Resize</option>
+                    <option value="ShieldBearer">Shield Bearer</option>
+                    <option value="SixthSense">Sixth Sense</option>
+                    <option value="SpiderPowers">Spider Powers</option>
+                    <option value="SuperSpeed">Super Speed</option>
+                    <option value="SuperStrength">Super Strength</option>
+                    <option value="Tactics">Tactics</option>
+                    <option value="Telekinesis">Telekinesis</option>
+                    <option value="Telepathy">Telepathy</option>
+                    <option value="Teleportation">Teleportation</option>
+                    <option value="Translation">Translation</option>
+                    <option value="WeatherControl">Weather Control</option>
+                </select>
+                
+                <select id="power5" disabled>
+                    <option value="" disabled selected>Please select a powerset</option>
+                    <option value="None">Basic</option>
+                    <option value="ElementalControl">Elemental Control</option>
+                    <option value="Healing">Healing</option>
+                    <option value="Illusion">Illusion</option>
+                    <option value="Luck">Luck</option>
+                    <option value="MartialArts">Martial Arts</option>
+                    <option value="MeleeWeapons">Melee Weapons</option>
+                    <option value="Magic">Magic</option>
+                    <option value="OmniversalTravel">Omniversal Travel</option>
+                    <option value="Phasing">Phasing</option>
+                    <option value="PowerControl">Power Control</option>
+                    <option value="Plasticity">Plasticity</option>
+                    <option value="RangedWeapons">Ranged Weapons</option>
+                    <option value="Resize">Resize</option>
+                    <option value="ShieldBearer">Shield Bearer</option>
+                    <option value="SixthSense">Sixth Sense</option>
+                    <option value="SpiderPowers">Spider Powers</option>
+                    <option value="SuperSpeed">Super Speed</option>
+                    <option value="SuperStrength">Super Strength</option>
+                    <option value="Tactics">Tactics</option>
+                    <option value="Telekinesis">Telekinesis</option>
+                    <option value="Telepathy">Telepathy</option>
+                    <option value="Teleportation">Teleportation</option>
+                    <option value="Translation">Translation</option>
+                    <option value="WeatherControl">Weather Control</option>
+                </select>
+                
+                <select id="power6" disabled>
+                    <option value="" disabled selected>Please select a powerset</option>
+                    <option value="None">Basic</option>
+                    <option value="ElementalControl">Elemental Control</option>
+                    <option value="Healing">Healing</option>
+                    <option value="Illusion">Illusion</option>
+                    <option value="Luck">Luck</option>
+                    <option value="MartialArts">Martial Arts</option>
+                    <option value="MeleeWeapons">Melee Weapons</option>
+                    <option value="Magic">Magic</option>
+                    <option value="OmniversalTravel">Omniversal Travel</option>
+                    <option value="Phasing">Phasing</option>
+                    <option value="PowerControl">Power Control</option>
+                    <option value="Plasticity">Plasticity</option>
+                    <option value="RangedWeapons">Ranged Weapons</option>
+                    <option value="Resize">Resize</option>
+                    <option value="ShieldBearer">Shield Bearer</option>
+                    <option value="SixthSense">Sixth Sense</option>
+                    <option value="SpiderPowers">Spider Powers</option>
+                    <option value="SuperSpeed">Super Speed</option>
+                    <option value="SuperStrength">Super Strength</option>
+                    <option value="Tactics">Tactics</option>
+                    <option value="Telekinesis">Telekinesis</option>
+                    <option value="Telepathy">Telepathy</option>
+                    <option value="Teleportation">Teleportation</option>
+                    <option value="Translation">Translation</option>
+                    <option value="WeatherControl">Weather Control</option>
+                </select>
+            </div>
+        </div>
     </div>
     <div class="step">
-
-        Step 3 Content
-
+        <h1>Step 3: Distribute Attribute Points</h1>
+        <div class="attribute-distribution">
+            <h2>Distribute Attribute Points</h2>
+            <p>Distribute 5 points per rank among the following attributes (max 3 + rank):</p>
+            <p id="pointsLeft">Points left: 0</p>
+            <p id="pointCap">Point Cap: 0</p>
+            <div class="attribute-group">
+                <label for="melee">Melee:</label>
+                <input type="number" id="melee" name="melee" min="0" max="10" value="0">
+            </div>
+            <div class="attribute-group">
+                <label for="agility">Agility:</label>
+                <input type="number" id="agility" name="agility" min="0" max="10" value="0">
+            </div>
+            <div class="attribute-group">
+                <label for="resilience">Resilience:</label>
+                <input type="number" id="resilience" name="resilience" min="0" max="10" value="0">
+            </div>
+            <div class="attribute-group">
+                <label for="vigilance">Vigilance:</label>
+                <input type="number" id="vigilance" name="vigilance" min="0" max="10" value="0">
+            </div>
+            <div class="attribute-group">
+                <label for="ego">Ego:</label>
+                <input type="number" id="ego" name="ego" min="0" max="10" value="0">
+            </div>
+            <div class="attribute-group">
+                <label for="logic">Logic:</label>
+                <input type="number" id="logic" name="logic" min="0" max="10" value="0">
+            </div>
+        </div>
     </div>
     <div class="step">
 

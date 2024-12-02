@@ -2,12 +2,12 @@
     font-family: "comic";
     src: url('../fonts/KOMIKAX_.ttf');
 }
-  
+
 @font-face {
     font-family: "comic-body";
     src: url("../fonts/KOMTXTK_.ttf");
 }
-  
+
 @font-face {
     font-family: "comic-ft";
     src: url("../fonts/KOMTXTI_.ttf");
@@ -17,7 +17,7 @@ header {
     display: flex;
     margin: auto;
     padding: 5px 20px;
-    color : white;
+    color: white;
     justify-content: space-between;
     align-items: center;
 }
@@ -136,6 +136,7 @@ body {
     font-size: 1.2em;
     color: #fff;
     font-weight: bold;
+    font-family: "comic";
 }
 
 .form-control {
@@ -160,6 +161,7 @@ body {
     background-color: #2a2a2a;
     color: white;
     padding: 0.5rem;
+    font-family: "comic-body";
 }
 
 .item-description {
@@ -169,12 +171,14 @@ body {
     border-radius: 4px;
     font-style: italic;
     min-height: 2em;
+    font-family: "comic-body";
 }
 
 .traits-list, .powers-list {
     margin-top: 10px;
     list-style: none;
     padding: 0;
+    font-family: "comic-body";
 }
 
 .traits-list li, .powers-list li {
@@ -190,4 +194,110 @@ body {
     font-size: 0.9em;
     margin: 15px 0 5px 0;
     font-family: "comic-body";
+}
+
+.attribute-distribution {
+    width: 50%; /* Reduced width */
+    margin-left: 10px; /* Added left margin */
+    margin-right: 10px; /* Removed right margin */
+    background-color: #1a1a1a;
+    padding: 1rem; /* Reduced padding */
+    border-radius: 10px;
+    color: white;
+    font-family: "comic-body";
+    transform: scale(0.8); /* Shrink content */
+    transform-origin: top left; /* Ensure scaling starts from top left */
+}
+
+.attribute-group {
+    margin-top: 20px;
+    margin-bottom: 1rem;
+}
+
+.attribute-group label {
+    font-size: 1em; /* Reduced font size */
+    color: #fff;
+    font-weight: bold;
+    font-family: "comic";
+}
+
+.attribute-group input {
+    margin-top: 0.5rem;
+    width: 10%;            
+    padding: 0.5rem; /* Reduced padding */
+    font-size: 2rem; /* Reduced font size */
+    font-family: "comic-body";
+    color: white;
+    background-color: #2a2a2a;
+    border: 1px solid #404040;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.attribute-group input:focus {
+    outline: none;
+    border-color: #800000;
+}
+
+.rank-attribute-container {
+    display: flex;
+    flex-direction: column; /* Change to column layout */
+    gap: 1rem; /* Add gap between elements */
+    margin-top: 1rem;
+}
+
+.rank {
+    width: 30%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    font-family: "comic-body";
+    color: white;
+    background-color: #2a2a2a;
+    border: 1px solid #404040;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.rank:focus {
+    outline: none;
+    border-color: #800000;
+}
+
+.rank-details {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: #1a1a1a;
+    border-radius: 10px;
+    color: white;
+    font-family: "comic-body";
+}
+
+#powerSelections {
+    display: grid; /* Use grid layout */
+    grid-template-columns: repeat(3, 1fr); /* 3 columns */
+    gap: 0.5rem; /* Add gap between dropdowns */
+}
+
+#powerSelections label {
+    grid-column: span 1; /* Ensure labels span 1 column */
+    font-size: 0.9rem; /* Smaller font size for labels */
+    font-family: "comic-body";
+    color: #888;
+}
+
+#powerSelections select {
+    width: 100%; /* Full width for dropdowns */
+    padding: 0.5rem; /* Smaller padding */
+    font-size: 0.9rem; /* Smaller font size */
+    font-family: "comic-body";
+    color: white;
+    background-color: #2a2a2a;
+    border: 1px solid #404040;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#powerSelections select:focus {
+    outline: none;
+    border-color: #800000;
 }
