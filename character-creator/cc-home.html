@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Character Creator</title>
     <link rel="stylesheet" href="cc-styles.css">
+    <link type="module" src="cc-scripts.js">
 </head>
 <header class="nav">
     <a href="../index.html"><img src="../images/marvel-logo.png" alt="Marvel Logo" class="logo"></a>
@@ -15,7 +16,114 @@
         <a href="cc-home.html">Character Creator</a>
     </div>
 </header>
+<header class="progress">
+    <div class="button-container">
+        <button id="backBtn">Back</button>
+        <button id="nextBtn">Next</button>
+    </div>
+</header>
 <body>
+    <div class="step">
+        <h1>Step 1: Origin & Occupation</h1>
+        <div class="form-section">
+            <div class="form-group">
+                <label for="origin">Origin:</label>
+                <p class="form-description">Choose the source of your character's powers or abilities</p>
+                <select id="origin" class="form-control" onchange="updateCharacterData('origin', this.value)">
+                    <option value="" disabled selected>Select an origin</option>
+                    <option value="Alien">Alien</option>
+                    <option value="Kree">Alien: Kree</option>
+                    <option value="Shiar">Alien: Shi`ar</option>
+                    <option value="Skrull">Alien: Skrull</option>
+                    <option value="Atlantean">Atlantean</option>
+                    <option value="Deviant">Deviant</option>
+                    <option value="Eternal">Eternal</option>
+                    <option value="HighTech">High Tech</option>
+                    <option value="Android">High Tech: Android</option>
+                    <option value="battleSuit">High Tech: Battle Suit</option>
+                    <option value="Cybernetics">High Tech: Cybernetics</option>
+                    <option value="pymParticles">High Tech: Pym Particles</option>
+                    <option value="Inhuman">Inhuman</option>
+                    <option value="Magic">Magic</option>
+                    <option value="Monstrus">Monstrus</option>
+                    <option value="Vampire">Monstrus: Vampire</option>
+                    <option value="Werewolf">Monstrus: Werewolf</option>
+                    <option value="Mutant">Mutant</option>
+                    <option value="Mythic">Mythic</option>
+                    <option value="Asgardian">Mythic: Asgardian</option>
+                    <option value="Olympian">Mythic: Olympian</option>
+                    <option value="specialTraining">Special Training</option>
+                    <option value="spiritOfVengence">Spirit of Vengence</option>
+                    <option value="Symbiote">Symbiote</option>
+                    <option value="Unknown">Unknown</option>
+                    <option value="WeirdScience">Weird Science</option>
+                </select>
+                <p id="originDescription" class="item-description"></p>
+                <div id="originTraitsContainer">
+                    <p class="list-header">Traits:</p>
+                    <ul id="originTraits" class="traits-list"></ul>
+                </div>
+                <div id="originPowersContainer">
+                    <p class="list-header">Powers:</p>
+                    <ul id="originPowers" class="powers-list"></ul>
+                </div>
+            </div>
+            
+            <div id="subOriginContainer">
+                <!-- Sub-origin will be dynamically inserted here -->
+            </div>
+            
+            <div class="form-group">
+                <label for="occupation">Occupation:</label>
+                <p class="form-description">Select your character's primary role in society</p>
+                <select id="occupation" class="form-control" onchange="updateCharacterData('occupation', this.value)">
+                    <option value="" disabled selected>Select an occupation</option>
+                    <option value="Adventurer">Adventurer</option>
+                    <option value="Assassin">Assassin</option>
+                    <option value="Criminal">Criminal</option>
+                    <option value="Educator">Educator</option>
+                    <option value="Engineer">Engineer</option>
+                    <option value="Entertainer">Entertainer</option>
+                    <option value="HealthCareWorker">Health Care Worker</option>
+                    <option value="Investigator">Investigator</option>
+                    <option value="Journalist">Journalist</option>
+                    <option value="LawEnforcer">Law Enforcer</option>
+                    <option value="Lawyer">Lawyer</option>
+                    <option value="Leader">Leader</option>
+                    <option value="Military">Military</option>
+                    <option value="Outsider">Outsider</option>
+                    <option value="Scientist">Scientist</option>
+                    <option value="Spy">Spy</option>
+                    <option value="Student">Student</option>
+                    <option value="Tycoon">Tycoon</option>
+                </select>
+                <p id="occupationDescription" class="item-description"></p>
+                <div id="occupationTraitsContainer">
+                    <p class="list-header">Traits:</p>
+                    <ul id="occupationTraits" class="traits-list"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="step">
+
+        Step 2 Content
+
+    </div>
+    <div class="step">
+
+        Step 3 Content
+
+    </div>
+    <div class="step">
+
+        Step 4 Content
+
+    </div>
+    <!-- Add more steps as needed -->
     
+
+    <script src="cc-data.js"></script>
+    <script src="cc-script.js"></script>
 </body>
 </html>
