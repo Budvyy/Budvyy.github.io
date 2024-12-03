@@ -183,7 +183,7 @@ const originData = {
         tags: []
     },
     
-    SpiritOfVengeance: {
+    SpiritOfVengence: {
         description: "The character has been possessed by a Spirit of Vengeance. Their purpose is to find sinners and impose penance. When a character becomes possessed by a Spirit of Vengeance, they gain the Alternate Form tag, which they can use voluntarily at any point. When the character takes on their Ghost Rider form, they gain access to the listed tags, traits and powers. When they return to human form, they lose the benefits of their Ghost Rider form.",
         examples: ["Ghost Rider (Johnny Blaze)", "Ghost Rider (Danny Ketch)", "Ghost Rider (Robbie Reyes)"],
         traits: [],

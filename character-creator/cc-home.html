@@ -6,6 +6,7 @@
     <title>Character Creator</title>
     <link rel="stylesheet" href="cc-styles.css">
     <link type="module" src="cc-scripts.js">
+    <link type="module" src="powers-data.js">
 </head>
 <header class="nav">
     <a href="../index.html"><img src="../images/marvel-logo.png" alt="Marvel Logo" class="logo"></a>
@@ -327,20 +328,70 @@
         </div>
     </div>
     <div class="step">
-
-        Step 4 Content
-
+        <h1>Step 4: Select Traits</h1>
+        <div class="form-section">
+            <h2>Pick Traits</h2>
+            <p>Select traits for your character based on your backstory.</p>
+            <div id="traitsSelectionsContainer" style="display: flex; gap: 2rem;">
+                <div id="traitsSelections">
+                    <select id="trait1" class="form-control">
+                        <option value="" disabled selected>Select a trait</option>
+                        <!-- Options will be dynamically populated -->
+                    </select>
+                    <select id="trait2" class="form-control" style="display: none;">
+                        <option value="" disabled selected>Select a trait</option>
+                        <!-- Options will be dynamically populated -->
+                    </select>
+                    <select id="trait3" class="form-control" style="display: none;">
+                        <option value="" disabled selected>Select a trait</option>
+                        <!-- Options will be dynamically populated -->
+                    </select>
+                    <select id="trait4" class="form-control" style="display: none;">
+                        <option value="" disabled selected>Select a trait</option>
+                        <!-- Options will be dynamically populated -->
+                    </select>
+                    <select id="trait5" class="form-control" style="display: none;">
+                        <option value="" disabled selected>Select a trait</option>
+                        <!-- Options will be dynamically populated -->
+                    </select>
+                    <select id="trait6" class="form-control" style="display: none;">
+                        <option value="" disabled selected>Select a trait</option>
+                        <!-- Options will be dynamically populated -->
+                    </select>
+                </div>
+                <div id="traitDescription" class="item-description" style="flex: 1;">
+                    <!-- Trait description will be displayed here -->
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="step">
-
-        Step 5 Content
-
+    <div class="step" class="container">
+        <h1>Step 5: Select Powers</h1>
+        <div class="power-list">
+            <h2>Available Powers</h2>
+            <ul id="available-powers">
+                <!-- Powers will be dynamically added here -->
+            </ul>
+        </div>
+        <div id="power-details" class="details">
+            <h2>Power Details</h2>
+            <ul id="power-description">
+                <!-- Power details will be displayed here -->
+            </ul>
+        </div>
+        <div class="selected-list">
+            <h2>Selected Powers</h2>
+            <ul id="selected-powers">
+                <!-- Selected powers will be dynamically added here -->
+            </ul>
+        </div>
     </div>
+    <!-- Step 6 Content -->
     <div class="step">
-
         Step 6 Content
-
     </div>
+
+    <!-- Step 7: Summary -->
     <div class="step">
         <h1>Step 7: Summary</h1>
         <div class="summary-section">
@@ -350,15 +401,10 @@
             <p><strong>Occupation:</strong> <span id="summaryOccupation"></span></p>
             <p><strong>Occupation Description:</strong> <span id="summaryOccupationDescription"></span></p>
             <p><strong>Rank:</strong> <span id="summaryRank"></span></p>
-            <p><strong>Powers:</strong> <span id="summaryPowers"></span></p>
+            <p><strong>Powersets:</strong> <span id="summaryPowersets"></span></p>
             <p><strong>Attributes:</strong></p>
-            <ul>
-                <li><strong>Melee:</strong> <span id="summaryMelee"></span></li>
-                <li><strong>Agility:</strong> <span id="summaryAgility"></span></li>
-                <li><strong>Resilience:</strong> <span id="summaryResilience"></span></li>
-                <li><strong>Vigilance:</strong> <span id="summaryVigilance"></span></li>
-                <li><strong>Ego:</strong> <span id="summaryEgo"></span></li>
-                <li><strong>Logic:</strong> <span id="summaryLogic"></span></li>
+            <ul id="summaryAttributes">
+                <!-- Attributes will be populated here -->
             </ul>
             <p><strong>Traits:</strong></p>
             <ul id="summaryTraits"></ul>
@@ -366,15 +412,118 @@
             <ul id="summaryEdges"></ul>
             <p><strong>Modifiers:</strong></p>
             <ul id="summaryModifiers"></ul>
-            <p><strong>Additional Powers:</strong></p>
-            <ul id="summaryAdditionalPowers"></ul>
+            <p><strong>Powers:</strong></p>
+            <ul id="summaryPowers"></ul>
         </div>
     </div>
-    
 
+    <!-- Scripts -->
+    <script src="cc-parse-powers.js"></script>
     <script src="cc-data.js"></script>
     <script src="cc-script.js"></script>
+    <script src="script.js"></script>
+    <script src="powers-data.js"></script>
+
     <script>
+        // Function to populate the powers list in Step 5
+        function populatePowersList() {
+            const powersList = document.getElementById('powersList');
+            if (!powersData || powersData.length === 0) {
+                powersList.innerHTML = '<li>No powers available.</li>';
+                return;
+            }
+
+            powersData.forEach(power => {
+                const listItem = document.createElement('li');
+                listItem.className = 'power-item';
+                listItem.textContent = power.title; // Display the power name
+
+                // Add click event to display description
+                listItem.addEventListener('click', (e) => {
+                    // Prevent checkbox toggle when clicking on the list item
+                    if (e.target.tagName.toLowerCase() !== 'input') {
+                        const checkbox = listItem.querySelector('input[type="checkbox"]');
+                        checkbox.checked = !checkbox.checked;
+                        if (checkbox.checked) {
+                            addPowerToSelection(power);
+                        } else {
+                            removePowerFromSelection(power);
+                        }
+                    }
+                });
+
+                // Add checkbox for selection
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.style.marginRight = '10px';
+                checkbox.addEventListener('change', (event) => {
+                    if (event.target.checked) {
+                        addPowerToSelection(power);
+                    } else {
+                        removePowerFromSelection(power);
+                    }
+                    displayPowerDescription(power);
+                });
+
+                listItem.prepend(checkbox); // Insert checkbox before the power name
+
+                powersList.appendChild(listItem);
+            });
+        }
+
+        // Function to display power description
+        function displayPowerDescription(power) {
+            const descriptionElement = document.getElementById('powerDescription');
+            descriptionElement.innerHTML = `<strong>${power.title}:</strong> ${power.FlavorText || 'No description available.'}`;
+        }
+
+        // Function to add power to the selected powers list
+        function addPowerToSelection(power) {
+            const selectedPowers = document.getElementById('selectedPowers');
+
+            // Check if the power is already selected to prevent duplicates
+            const existingItem = Array.from(selectedPowers.children).find(li => li.dataset.id === power.id);
+            if (existingItem) return;
+
+            const listItem = document.createElement('li');
+            listItem.className = 'power-item';
+            listItem.dataset.id = power.id; // Assuming each power has a unique 'id'
+            listItem.textContent = power.title;
+
+            // Add remove button
+            const removeBtn = document.createElement('button');
+            removeBtn.textContent = 'Remove';
+            removeBtn.style.marginLeft = '10px';
+            removeBtn.style.padding = '2px 5px';
+            removeBtn.style.fontSize = '0.8em';
+            removeBtn.style.cursor = 'pointer';
+            removeBtn.addEventListener('click', () => {
+                // Uncheck the corresponding checkbox in the main list
+                const mainListItem = Array.from(document.getElementById('powersList').children)
+                    .find(li => li.dataset.id === power.id);
+                if (mainListItem) {
+                    const checkbox = mainListItem.querySelector('input[type="checkbox"]');
+                    if (checkbox) checkbox.checked = false;
+                }
+
+                // Remove from selected powers
+                listItem.remove();
+            });
+
+            listItem.appendChild(removeBtn);
+            selectedPowers.appendChild(listItem);
+        }
+
+        // Function to remove power from the selected powers list
+        function removePowerFromSelection(power) {
+            const selectedPowers = document.getElementById('selectedPowers');
+            const listItem = Array.from(selectedPowers.children).find(li => li.dataset.id === power.id);
+            if (listItem) {
+                listItem.remove();
+            }
+        }
+
+        // Update summary with selected powers
         function updateSummary() {
             const origin = document.getElementById('origin').value;
             const occupation = document.getElementById('occupation').value;
@@ -384,60 +533,72 @@
             document.getElementById('summaryOccupation').innerText = occupation;
             document.getElementById('summaryOccupationDescription').innerText = occupationData[occupation]?.description || '';
             document.getElementById('summaryRank').innerText = document.querySelector('.rank').value;
-            document.getElementById('summaryPowers').innerText = Array.from(document.querySelectorAll('#powerSelections select'))
+            document.getElementById('summaryPowersets').innerText = Array.from(document.querySelectorAll('#powerSelections select'))
                 .map(select => select.value)
-                .filter(value => value !== "")
                 .join(', ');
-            document.getElementById('summaryMelee').innerText = document.getElementById('melee').value;
-            document.getElementById('summaryAgility').innerText = document.getElementById('agility').value;
-            document.getElementById('summaryResilience').innerText = document.getElementById('resilience').value;
-            document.getElementById('summaryVigilance').innerText = document.getElementById('vigilance').value;
-            document.getElementById('summaryEgo').innerText = document.getElementById('ego').value;
-            document.getElementById('summaryLogic').innerText = document.getElementById('logic').value;
+            document.getElementById('summaryAttributes').innerHTML = `
+                <li>Melee: ${document.getElementById('melee').value}</li>
+                <li>Agility: ${document.getElementById('agility').value}</li>
+                <li>Resilience: ${document.getElementById('resilience').value}</li>
+                <li>Vigilance: ${document.getElementById('vigilance').value}</li>
+                <li>Ego: ${document.getElementById('ego').value}</li>
+                <li>Logic: ${document.getElementById('logic').value}</li>
+            `;
 
             const traits = [...(originData[origin]?.traits || []), ...(occupationData[occupation]?.traits || [])];
             const traitsList = document.getElementById('summaryTraits');
             const edgesList = document.getElementById('summaryEdges');
             const modifiersList = document.getElementById('summaryModifiers');
-            const additionalPowersList = document.getElementById('summaryAdditionalPowers');
+            const powersList = document.getElementById('summaryPowers');
             traitsList.innerHTML = '';
             edgesList.innerHTML = '';
             modifiersList.innerHTML = '';
-            additionalPowersList.innerHTML = '';
+            powersList.innerHTML = '';
 
             traits.forEach(trait => {
-                const traitKey = trait.replace(/\s+/g, '');
-                const description = trait.startsWith('Connections') ? traitData.Connections.description : traitData[traitKey]?.description || '';
-                const traitItem = document.createElement('li');
-                traitItem.innerHTML = `<strong>${trait}:</strong> ${description}`;
-                traitsList.appendChild(traitItem);
-
-                if (traitData[traitKey]?.edges) {
-                    traitData[traitKey].edges.forEach(edge => {
-                        const edgeItem = document.createElement('li');
-                        edgeItem.innerText = edge;
-                        edgesList.appendChild(edgeItem);
-                    });
-                }
-
-                if (traitData[traitKey]?.modifiers) {
-                    traitData[traitKey].modifiers.forEach(modifier => {
-                        const modifierItem = document.createElement('li');
-                        modifierItem.innerText = modifier;
-                        modifiersList.appendChild(modifierItem);
-                    });
-                }
+                const li = document.createElement('li');
+                li.textContent = trait;
+                traitsList.appendChild(li);
             });
 
-            const additionalPowers = [...(originData[origin]?.powers || []), ...(occupationData[occupation]?.powers || [])];
-            additionalPowers.forEach(power => {
-                const powerItem = document.createElement('li');
-                powerItem.innerText = power;
-                additionalPowersList.appendChild(powerItem);
+            const selectedPowers = getSelectedPowers();
+            selectedPowers.forEach(powerName => {
+                const li = document.createElement('li');
+                const power = powersData.find(p => p.title === powerName);
+                if (power) {
+                    li.textContent = power.title;
+                }
+                powersList.appendChild(li);
             });
         }
 
+        // Function to get selected powers
+        function getSelectedPowers() {
+            const selectedPowers = [];
+            const selectedList = document.getElementById('selectedPowers');
+            selectedList.querySelectorAll('li').forEach(li => {
+                selectedPowers.push(li.textContent.replace('Remove', '').trim());
+            });
+            return selectedPowers;
+        }
+
+        // Event listener for Next button to update summary
         document.getElementById('nextBtn').addEventListener('click', updateSummary);
+
+        // Initialize the powers list after powersData is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.powersData) {
+                populatePowersList();
+            } else {
+                // If powersData is not yet loaded, wait until it is
+                const checkPowersData = setInterval(() => {
+                    if (window.powersData) {
+                        populatePowersList();
+                        clearInterval(checkPowersData);
+                    }
+                }, 100);
+            }
+        });
     </script>
 </body>
 </html>

@@ -9,6 +9,17 @@ function showStep(step) {
 }
 
 function nextStep() {
+    if (currentStep === 4) { // Step 5: Select Powers
+        const rank = parseInt(document.querySelector('.rank').value);
+        const maxPowers = rank * 4;
+        const selectedCount = getSelectedPowers().length;
+
+        if (selectedCount < maxPowers) {
+            alert(`Please select ${maxPowers} powers based on your rank.`);
+            return;
+        }
+    }
+
     const steps = document.querySelectorAll('.step');
     if (currentStep < steps.length - 1) {
         currentStep++;
@@ -197,12 +208,14 @@ document.querySelector('.rank').addEventListener('change', function() {
     const rank = parseInt(this.value);
     displayRankDetails(rank);
     limitAttributePoints();
+    enforceMaxPowers();
 });
 
 document.addEventListener('DOMContentLoaded', () => {
     limitAttributePoints();
     const rank = parseInt(document.querySelector('.rank').value);
     displayRankDetails(rank);
+    enforceMaxPowers();
 });
 
 function enableNextPowerDropdown(currentDropdown) {
@@ -243,3 +256,141 @@ document.querySelectorAll('#powerSelections select').forEach((select, index) => 
         select.disabled = true;
     }
 });
+
+// Function to populate the powers list
+function populatePowersList() {
+    const powersListContainer = document.querySelector('.powers-list-container');
+    powersListContainer.innerHTML = ''; // Clear existing powers
+
+    // Sort powers alphabetically
+    const sortedPowers = [...window.powersData].sort((a, b) => a.title.localeCompare(b.title));
+
+    sortedPowers.forEach(power => {
+        const powerItem = document.createElement('div');
+        powerItem.className = 'power-item';
+        
+        // Create a checkbox for selection
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.id = `power-${power.title}`;
+        checkbox.value = power.title;
+        checkbox.addEventListener('change', () => handlePowerSelection(power, checkbox.checked));
+
+        // Create a label for the checkbox
+        const label = document.createElement('label');
+        label.htmlFor = `power-${power.title}`;
+        label.textContent = power.title;
+
+        // Show all details on hover
+        label.addEventListener('mouseenter', () => showPowerDetails(power));
+        label.addEventListener('mouseleave', () => clearPowerDetails());
+
+        powerItem.appendChild(checkbox);
+        powerItem.appendChild(label);
+        powersListContainer.appendChild(powerItem);
+    });
+}
+
+function handlePowerSelection(power, isSelected) {
+    const selectedPowers = document.getElementById('selectedPowers');
+    if (isSelected) {
+        // Add to selected powers
+        const listItem = document.createElement('li');
+        listItem.textContent = power.title;
+        listItem.id = `selected-${power.title}`;
+        listItem.addEventListener('click', () => removePower(power.title));
+        selectedPowers.appendChild(listItem);
+        
+        // Disable the checkbox to prevent re-selection
+        document.getElementById(`power-${power.title}`).disabled = true;
+    } else {
+        // Remove from selected powers
+        const listItem = document.getElementById(`selected-${power.title}`);
+        if (listItem) {
+            selectedPowers.removeChild(listItem);
+        }
+
+        // Enable the checkbox
+        document.getElementById(`power-${power.title}`).disabled = false;
+    }
+
+    // Update character data
+    updateCharacterData('powers', getSelectedPowers());
+
+    // Enforce max powers based on rank
+    enforceMaxPowers();
+}
+
+function enforceMaxPowers() {
+    const rank = parseInt(document.querySelector('.rank').value);
+    const maxPowers = rank * 4;
+    const selectedCount = getSelectedPowers().length;
+
+    if (selectedCount >= maxPowers) {
+        // Disable all unchecked checkboxes
+        document.querySelectorAll('.powers-list-container input[type="checkbox"]').forEach(checkbox => {
+            if (!checkbox.checked) {
+                checkbox.disabled = true;
+            }
+        });
+    } else {
+        // Enable all checkboxes that are not selected
+        document.querySelectorAll('.powers-list-container input[type="checkbox"]').forEach(checkbox => {
+            if (!checkbox.checked) {
+                checkbox.disabled = false;
+            }
+        });
+    }
+}
+
+function removePower(powerName) {
+    const checkbox = document.getElementById(`power-${powerName}`);
+    if (checkbox) {
+        checkbox.checked = false;
+        checkbox.disabled = false;
+    }
+    const listItem = document.getElementById(`selected-${powerName}`);
+    if (listItem) {
+        listItem.parentElement.removeChild(listItem);
+    }
+    handlePowerSelection(window.powersData.find(p => p.title === powerName), false);
+}
+
+function getSelectedPowers() {
+    const selected = [];
+    window.powersData.forEach(power => {
+        const checkbox = document.getElementById(`power-${power.title}`);
+        if (checkbox && checkbox.checked) {
+            selected.push(power.title);
+        }
+    });
+    return selected;
+}
+
+// Initialize the power picker on DOM content loaded
+document.addEventListener('DOMContentLoaded', () => {
+    if (window.powersData) {
+        populatePowersList();
+        enforceMaxPowers();
+    }
+});
+
+function showPowerDetails(power) {
+    const description = `
+        <strong>Flavor Text:</strong> ${power.FlavorText}<br>
+        <strong>Power Set:</strong> ${power.PowerSet}<br>
+        <strong>Prerequisites:</strong> ${power.Prerequisites}<br>
+        <strong>Action:</strong> ${power.Action}<br>
+        <strong>Trigger:</strong> ${power.Trigger}<br>
+        <strong>Duration:</strong> ${power.Duration}<br>
+        <strong>Range:</strong> ${power.Range}<br>
+        <strong>Cost:</strong> ${power.Cost}<br>
+        <strong>Effect:</strong> ${power.Effect}<br>
+        <strong>Rank:</strong> ${power.Rank}
+    `;
+    document.getElementById('powerDescription').innerHTML = description;
+}
+
+function clearPowerDetails() {
+    document.getElementById('powerDescription').innerHTML = '';
+}

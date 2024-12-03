@@ -272,32 +272,53 @@ body {
     font-family: "comic-body";
 }
 
-#powerSelections {
-    display: grid; /* Use grid layout */
-    grid-template-columns: repeat(3, 1fr); /* 3 columns */
-    gap: 0.5rem; /* Add gap between dropdowns */
+
+.step {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #121212;
 }
 
-#powerSelections label {
-    grid-column: span 1; /* Ensure labels span 1 column */
-    font-size: 0.9rem; /* Smaller font size for labels */
-    font-family: "comic-body";
-    color: #888;
-}
-
-#powerSelections select {
-    width: 100%; /* Full width for dropdowns */
-    padding: 0.5rem; /* Smaller padding */
-    font-size: 0.9rem; /* Smaller font size */
-    font-family: "comic-body";
-    color: white;
-    background-color: #2a2a2a;
+.power-list, .selected-list, .details {
+    width: 30%;
     border: 1px solid #404040;
-    border-radius: 5px;
-    cursor: pointer;
+    padding: 10px;
+    overflow-y: auto;
+    max-height: 400px;
+    background-color: #1a1a1a;
+    border-radius: 10px;
+    color: white;
+    font-family: "comic-body";
 }
 
-#powerSelections select:focus {
-    outline: none;
-    border-color: #800000;
+h2 {
+    text-align: center;
+    font-family: "comic";
+    color: white;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    padding: 5px;
+    cursor: pointer;
+    background-color: #2a2a2a;
+    margin: 5px 0;
+    border-radius: 4px;
+}
+
+li:hover {
+    background-color: #3d3d3d;
+}
+
+.description {
+    padding: 10px;
+    background-color: #3d3d3d;
+    border-radius: 4px;
+    font-family: "comic-body";
 }
