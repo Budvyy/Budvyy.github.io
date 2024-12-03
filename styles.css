@@ -57,25 +57,35 @@ header {
   gap: 20px;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap; /* Allow items to wrap */
+  font-family: "comic-body";
+}
+
+.navigation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .navigation .logo {
-  flex: 0 0 auto; /* Prevent the logo from shrinking */
-  margin-right: 10px; /* Add some margin to the right */
+    margin-right: 0; /* Remove margin to ensure the title is touching the logo */
 }
 
 .navigation h1 {
-  flex: 1 1 auto; /* Allow the title to grow and shrink */
-  margin: 0;
-  padding-left: 10px; /* Add padding to create a small space between the logo and title */
-  font-size: 1.5em;
-  color: white; /* Ensure the title is always white */
-  text-align: center; /* Center the title */
+    flex-grow: 1;
+    margin: 0;
+    padding-left: 10px; /* Add padding to create a small space between the logo and title */
+    font-size: 1.5em;
+    color: white; /* Ensure the title is always white */
+}
+
+.navigation .logo {
+  border-right: 1px solid #ccc;
+  padding-right: 10px;
+  height: 50px;
+  width: 90px;
 }
 
 .navigation a {
-  flex: 0 0 auto; /* Prevent the links from shrinking */
   padding: 10px 15px;
   background-color: #000;
   color: #fff;
@@ -389,7 +399,7 @@ body.dark-mode .button-container {
 /* 10. Responsive Layout */
 @media (max-width: 768px) {
   .cards-container {
-    grid-template-columns: repeat(2, 1fr); /* Display 2 cards in a row */
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     padding: 10px; /* Reduce padding for smaller screens */
   }
 
@@ -417,19 +427,8 @@ body.dark-mode .button-container {
     margin-right: 0;
   }
 
-  .navigation {
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
-  }
-
-  .navigation .logo {
-    display: none; /* Hide the logo on mobile */
-    margin-bottom: 10px;
-  }
-
   .navigation h1 {
-    font-size: 1.3em; /* Smaller font size for mobile */
+    font-size: 1.2em; /* Smaller font size for mobile */
   }
 
   .navigation a {
@@ -440,31 +439,12 @@ body.dark-mode .button-container {
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
-    font-size: 14px; /* Smaller font size for mobile */
-  }
-
-  .navigation {
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
-  }
-
-  .navigation .logo {
-    margin-bottom: 10px;
-  }
-
-  .navigation h1 {
-    font-size: 1.3em; /* Smaller font size for mobile */
-  }
-
-  .navigation a {
-    font-size: 14px; /* Smaller font size for mobile */
   }
 }
 
 @media (max-width: 480px) {
   .cards-container {
-    grid-template-columns: repeat(2, 1fr); /* Display 2 cards in a row */
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     padding: 5px; /* Further reduce padding for very small screens */
   }
 
@@ -492,48 +472,18 @@ body.dark-mode .button-container {
     margin-right: 0;
   }
 
-  .navigation {
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
-  }
-
-  .navigation .logo {
-    display: none; /* Hide the logo on very small screens */
-    margin-bottom: 10px;
-  }
-
   .navigation h1 {
-    font-size: 1.1em; /* Smaller font size for very small screens */
+    font-size: 1em; /* Even smaller font size for very small screens */
   }
 
   .navigation a {
-    font-size: 12px; /* Smaller font size for very small screens */
+    font-size: 12px; /* Even smaller font size for very small screens */
   }
 
   .button-container {
     flex-direction: column;
     align-items: flex-start;
     gap: 5px; /* Reduce gap for very small screens */
-    font-size: 12px; /* Smaller font size for very small screens */
-  }
-
-  .navigation {
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
-  }
-
-  .navigation .logo {
-    margin-bottom: 10px;
-  }
-
-  .navigation h1 {
-    font-size: 1.1em; /* Smaller font size for very small screens */
-  }
-
-  .navigation a {
-    font-size: 12px; /* Smaller font size for very small screens */
   }
 }
 
@@ -813,19 +763,8 @@ body.list-page .cards-container .card {
       margin-right: 0;
   }
 
-  .navigation {
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
-  }
-
-  .navigation .logo {
-    display: none; /* Hide the logo on mobile */
-    margin-bottom: 10px;
-  }
-
   .navigation h1 {
-    font-size: 1.3em; /* Smaller font size for mobile */
+    font-size: 1.2em; /* Smaller font size for mobile */
   }
 
   .navigation a {
@@ -836,34 +775,10 @@ body.list-page .cards-container .card {
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
-    font-size: 14px; /* Smaller font size for mobile */
-  }
-
-  .navigation {
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
-  }
-
-  .navigation .logo {
-    margin-bottom: 10px;
-  }
-
-  .navigation h1 {
-    font-size: 1.3em; /* Smaller font size for mobile */
-  }
-
-  .navigation a {
-    font-size: 14px; /* Smaller font size for mobile */
   }
 }
 
 @media (max-width: 480px) {
-  .cards-container {
-    grid: repeat(2, 2); /* Display 2 cards in a row */
-    padding: 5px; /* Further reduce padding for very small screens */
-  }
-
   .filter-sort-container {
       flex-direction: column;
       align-items: flex-start;
@@ -888,93 +803,17 @@ body.list-page .cards-container .card {
       margin-right: 0;
   }
 
-  .navigation {
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
-  }
-
-  .navigation .logo {
-    display: none; /* Hide the logo on very small screens */
-    margin-bottom: 10px;
-  }
-
   .navigation h1 {
-    font-size: 1.1em; /* Smaller font size for very small screens */
+    font-size: 1em; /* Even smaller font size for very small screens */
   }
 
   .navigation a {
-    font-size: 12px; /* Smaller font size for very small screens */
+    font-size: 12px; /* Even smaller font size for very small screens */
   }
 
   .button-container {
     flex-direction: column;
     align-items: flex-start;
     gap: 5px; /* Reduce gap for very small screens */
-    font-size: 12px; /* Smaller font size for very small screens */
-  }
-
-  .navigation {
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
-  }
-
-  .navigation .logo {
-    margin-bottom: 10px;
-  }
-
-  .navigation h1 {
-    font-size: 1.1em; /* Smaller font size for very small screens */
-  }
-
-  .navigation a {
-    font-size: 12px; /* Smaller font size for very small screens */
-  }
-}
-
-/* styles.css */
-
-@media (max-width: 480px) {
-  .cards-container {
-    grid-template-columns: repeat(2, 1fr); /* Display 2 cards in a row */
-    padding: 5px; /* Further reduce padding for very small screens */
-  }
-  .logo {
-    display: none;
-  }
-  .button-container {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-    font-size: 14px; /* Smaller font size for mobile */
-  }
-
-  .filter-sort-container {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-    padding: 5px; /* Further reduce padding for very small screens */
-  }
-
-  .filter-container, .sort-container {
-    width: 100%;
-    justify-content: space-between;
-  }
-
-  .sidebar {
-    display: none; /* Hide the sidebar for very small screens */
-  }
-
-  .toggle-sidebar-btn {
-    display: none; /* Hide the toggle button for very small screens */
-  }
-
-  .main-content.sidebar-open {
-    margin-right: 0;
-  }
-
-  .navigation h1 {
-    font-size: 1.1em; /* Smaller font size for very small screens */
   }
 }
