@@ -187,7 +187,7 @@ const powersData = [
     PowerSet: "Power Control",
     Prerequisites: "None",
     Action: "Standard",
-    Trigger: "None", 
+    Trigger: "None",
     Duration: "Concentration",
     Range: "None",
     Cost: 0,
